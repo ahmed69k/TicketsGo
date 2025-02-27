@@ -6,3 +6,5 @@ node_modules/
 
 # Ignore all .DS_Store files (common on macOS)
 .DS_Store
+
+tempCodeRUnnerFIle.js
