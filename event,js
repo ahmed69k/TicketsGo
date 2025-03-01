@@ -1,0 +1,16 @@
+
+eventSchema.methods.totalAvailable = function () {
+    return `Total tickets available: ${this.remainingTickets}`;
+};
+
+eventSchema.methods.selltickets=function(ticketsno){
+    if(this.remainingTickets>=ticketsno){
+        this.remainingTickets-=ticketsno;
+        return `Successfully sold ${ticketsNo} tickets. Remaining: ${this.remainingTickets}`;
+    }
+    else{
+        return"Tickets not available";
+    }
+}
+const event=mongoose.model('event',eventSchema);
+module.exports=event;
