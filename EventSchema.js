@@ -1,26 +1,29 @@
 const eventSchema = new mongoose.Schema(
-    {
-  title: { type: String,
-     required: true },
+  {
+title: { type: String,
+   required: true },
 
-  description: { type: String ,
-     required: fasle},
+description: { type: String ,
+   required: fasle},
 
-  date: { type: Date, 
-    required: true },
+date: { type: Date, 
+  required: true },
 
-  location: { type: String,
-     required: true },
+location: { type: String,
+   required: true },
 
-  category: { type: String, 
-    required: true },
+category: { type: String, 
+  required: true },
 
-  image: { type: String ,required:flase }, 
+image: { type: String ,required:flase }, 
 
-  ticketPrice: { type: Number, required: true },
+ticketPrice: { type: Number, required: true },
 
-  totalTickets: { type: Number, required: true },
+totalTickets: { type: Number, required: true },
 
-  remainingTickets: { type: Number, required: true },
+remainingTickets: { type: Number, required: true },
+
+Creator: {type: User, required: true},
+
+Timestamp: {type: Date, default:Date.now}
 });
-
