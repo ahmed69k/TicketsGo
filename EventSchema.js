@@ -8,7 +8,7 @@ const eventSchema = new mongoose.Schema({
     },
     description: { 
       type: String ,
-      required: fasle
+      required: false
   },
     date: { 
       type: Date, 
@@ -24,7 +24,7 @@ const eventSchema = new mongoose.Schema({
 
     image: { 
       type: String ,
-      required:flase }, 
+      required:false }, 
 
     ticketPrice: { 
       type: Number, 
@@ -47,5 +47,5 @@ const eventSchema = new mongoose.Schema({
       default:Date.now}
 });
 
-const Event = mongoose.mode('Event',eventSchema)
+const Event = mongoose.model('Event',eventSchema)
 module.exports = Event;
