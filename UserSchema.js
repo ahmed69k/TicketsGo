@@ -1,4 +1,6 @@
-const UserSchema - new mongoose.Schema({
+const mongoose = require('mongoose')
+
+const UserSchema = new mongoose.Schema({
     
     name: {
         type: String,
@@ -9,7 +11,7 @@ const UserSchema - new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        trim= true,
+        trim: true,
     },
     profilePicture: {
         type: String,
@@ -22,9 +24,12 @@ const UserSchema - new mongoose.Schema({
     role: {
         type: String,
         enum: ['Standard User', 'Organizer', 'System Admin']
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now
     }
-}, 
-    { timestamp: true});
-)
+});
+
 const User= mongoose.model('User', UserSchema);
 module.exports= User;
