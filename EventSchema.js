@@ -39,7 +39,8 @@ const eventSchema = new mongoose.Schema({
       required: true },
 
     Creator: {
-      type: User, 
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
       required: true},
 
     Timestamp: {
@@ -47,5 +48,5 @@ const eventSchema = new mongoose.Schema({
       default:Date.now}
 });
 
-const Event = mongoose.model('Event',eventSchema)
+const Event = mongoose.model('Event', eventSchema);
 module.exports = Event;
