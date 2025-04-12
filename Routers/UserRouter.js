@@ -19,7 +19,7 @@ router.get("/api/v1/users",authenticationMiddleware,authorizationMiddleware(['Sy
 router.get("/api/v1/users/profile",authenticationMiddleware,authorizationMiddleware(['Standard User', 'Organizer', 'System Admin']), userController.getCurrentUser);
 
 // * Update user info by the user
-router.put("/api/v1/users/profile",authenticationMiddleware,authorizationMiddleware(['Standard User']), userController.updateCurrentUser);
+router.put("/api/v1/users/profile",authenticationMiddleware,authorizationMiddleware(['Standard User', 'Organizer', 'System Admin']), userController.updateCurrentUser);
 
 // * Update user role by admin
 router.put("/api/v1/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.updateAdminUser);
