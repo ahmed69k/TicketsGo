@@ -2,15 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser=require('cookie-parser')
 const cors = require("cors");
+
 const app = express();
 
-const BookingRouter = require("./Routers\BookingRouter");
-const EventRouter = require("./Routers\EventRouter");
-const UserRouter = require("./Routers\UserRouter");
-const AuthRouter = require("./Routers\AuthRouter");
-const RegisterRouter = require("./Routers\RegisterRouter");
-const UpdatePasswordRouter = require("./Routers\UpdatePasswordRouter");
-const AuthenticationMiddleware=require('./Middleware\AuthenticationMiddleware')
+const BookingRouter = require("./Routers/BookingRouter");
+const EventRouter = require("./Routers/EventRouter");
+const UserRouter = require("./Routers/UserRouter");
+const AuthRouter = require("./Routers/AuthRouter");
+const RegisterRouter = require("./Routers/RegisterRouter");
+const UpdatePasswordRouter = require("./Routers/UpdatePasswordRouter");
+const AuthenticationMiddleware=require('./Middleware/AuthenticationMiddleware')
 
 require('dotenv').config();
 
