@@ -67,7 +67,52 @@ const userController = {
             res.status(500).json({message: "Server Error"});
 
         }
-    }
+    },
+    getAllUsers: async (req, res) => {
+        try {
+          const users = await userModel.find();
+          return res.status(200).json(users);
+        } catch (error) {
+          return res.status(500).json({ message: error.message });
+        }
+      },
+      getUser: async (req, res) => {
+        try {
+          const user = await userModel.findById(req.params.id);
+          return res.status(200).json(user);
+        } catch (error) {
+          return res.status(500).json({ message: error.message });
+        }
+      },
+      updateUser: async (req, res) => {
+        try {
+      
+          const user = await userModel.findByIdAndUpdate(
+            req.params.id,
+            { name: req.body.name },
+            {
+              new: true,
+            }
+          );
+          return res.status(200).json({ user, msg: "User updated successfully!" });
+        } catch (error) {
+          return res.status(500).json({ message: error.message });
+        }
+      },
+      deleteUser: async (req, res) => {
+        try {
+          const user = await userModel.findByIdAndDelete(req.params.id);
+          return res.status(200).json({ user, msg: "User deleted successfully!" });
+        } catch (error) {
+          return res.status(500).json({ message: error.message });
+        }
+      },
+      getCurrentUser: (req, res) => {
+        res.send(req.user);
+      },
+    };
+    
+    module.exports = userController;
 
 
- }
+ 
