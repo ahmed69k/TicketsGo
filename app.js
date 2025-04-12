@@ -11,6 +11,7 @@ const UserRouter = require("./Routers/UserRouter");
 const AuthRouter = require("./Routers/AuthRouter");
 const RegisterRouter = require("./Routers/RegisterRouter");
 const UpdatePasswordRouter = require("./Routers/UpdatePasswordRouter");
+const AuthenticationMiddleware = require("./Middleware/AuthenticationMiddleware");
 
 require('dotenv').config();
 
