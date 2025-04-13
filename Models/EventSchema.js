@@ -45,7 +45,13 @@ const eventSchema = new mongoose.Schema({
 
     Timestamp: {
       type: Date, 
-      default:Date.now}
+      default:Date.now},
+      
+    Status: {
+      type: String,
+      enum: ['Approved', 'Pending', 'Declined'],
+      default: 'Pending'
+    }
 });
 
 const Event = mongoose.model('Event', eventSchema);
