@@ -6,12 +6,12 @@ const secretKey = process.env.SECRET_KEY;
 const userController = {
     register: async (req,res) =>{
         try{
-            const{email,password,name,role} = req.body;
+            const{name, email, profilePicture, password, role} = req.body;
             const existingUser = await userModel.findOne({email});
             if(existingUser){
                 return res.status(409).json({message:"This email is already associated to another account!"});
             }
-            const hashedPassword = bcrypt.hash(password, 10);
+            const hashedPassword = await bcrypt.hash(password, 10);
 
             const newUser = new userModel({
                 name,
@@ -59,7 +59,7 @@ const userController = {
                 sameSite : "none",
             })
             .status(200)
-            .json({message: "Login Successful", user})
+            .json({message: "Login Successful", user, "Token": token});
         }
         catch(error){
             console.log("Error logging in user",error);

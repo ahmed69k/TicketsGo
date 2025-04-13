@@ -1,5 +1,5 @@
-const eventModel = require('../Models/EventModel');
-require(dotenv).config();
+require('dotenv').config();
+const eventModel = require('../Models/EventSchema');
 
 const eventController = {
     create: async (req, res) => {

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const eventController = require("../Controllers/EventController");
 const authorizationMiddleware = require('../Middleware/AuthorizationMiddleware');
