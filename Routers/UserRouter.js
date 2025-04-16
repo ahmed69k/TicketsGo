@@ -6,6 +6,11 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 
 const router = express.Router();
 
+// * forgot password
+router.get("/forgot-password", userController.forgetPassword);
+
+// * reset password
+router.put("/reset-password", userController.resetPassword);
 
 // * register
 router.post("/register", userController.register);
@@ -13,11 +18,7 @@ router.post("/register", userController.register);
 // * login
 router.post("/login", userController.login);
 
-// * forgot password
-router.get("/forgot-password", userController.forgetPassword);
 
-// * reset password
-router.put("/reset-password", userController.resetPassword);
 
 // * get all users
 router.get("/users",authenticationMiddleware,authorizationMiddleware(['System Admin']),userController.getAllUsers);
