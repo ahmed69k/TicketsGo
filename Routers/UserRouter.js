@@ -7,7 +7,7 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 const router = express.Router();
 
 // * forgot password
-router.get("/forgot-password", userController.forgetPassword);
+router.put("/forgot-password", userController.forgetPassword);
 
 // * reset password
 router.put("/reset-password", userController.resetPassword);
