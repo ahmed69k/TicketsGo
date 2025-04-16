@@ -1,4 +1,8 @@
-## Malak Ayman
-Normal team member
-## Task 1:
-Event Schema
+## Developping a FullStack WebApp 
+
+In this project, we will develop a full-stack web application to create an online event ticketing system.
+This system will allow users to browse, search, and purchase tickets for various events such as concerts,
+sports games, theater shows, and more.
+
+Task 1 Deadline: 7/3/2025, 11:59PM
+Task 2 Deadline: 21/4/2025. 11:59PM
