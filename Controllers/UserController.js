@@ -2,8 +2,79 @@ const userModel = require('../Models/UserSchema');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 const secretKey = process.env.SECRET_KEY;
+const nodemailer = require("nodemailer");
+
+  
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const sendResetEmail = async (to, resetLink) => {
+    await transporter.sendMail({
+      from: `"Your App Name" <${process.env.EMAIL_USER}>`,
+      to,
+      subject: "Reset Your Password",
+      html: `
+        <p>Click the link to reset your password:</p>
+        <a href="${resetLink}">${resetLink}</a>
+        <p>This link will expire in 1 hour.</p>
+      `,
+    });
+  };
+  console.log("🔥 Controller file is being read");
+
 const userController = {
+
+  
+    //Forget password
+    forgetPassword: async (req, res) => {
+      try {
+        
+        const { email } = req.body;
+    
+        const user = await userModel.findOne({ email });
+    
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+    
+        const token = jwt.sign(
+          { userId: user._id },
+          process.env.SECRET_KEY,
+          { expiresIn: "1h" }
+        );
+    
+        const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+    
+        await transporter.sendMail({
+          from: `"Your App" <${process.env.EMAIL_USER}>`,
+          to: user.email,
+          subject: "Reset Your Password",
+          html: `
+            <h3>Reset your password</h3>
+            <p>Click the link below to reset your password:</p>
+            <a href="${resetLink}">${resetLink}</a>
+            <p>This link will expire in 1 hour.</p>
+          `
+        });
+    
+        return res.status(200).json({
+          message: "Password reset link sent to your email.",
+        });
+    
+      } catch (err) {
+        console.error("❌ Error in forgetPassword:", err);
+        return res.status(500).json({ message: "Server Error" });
+      }
+    },
+    
+  
     register: async (req,res) =>{
         try{
             const{name, email, profilePicture, password, role} = req.body;
@@ -30,6 +101,9 @@ const userController = {
         }
 
     },
+
+   
+
     login: async (req,res) =>{
         try{
             const {email,password} = req.body;
@@ -85,7 +159,7 @@ const userController = {
       },
       updateAdminUser: async (req, res) => {
         try {
-          const userId = req.params.Id; // use authenticated user from middleware
+          const userId = req.params.Id;   //use authenticated user from middleware
       
           const updateFields = {};
       
@@ -112,16 +186,16 @@ const userController = {
 
       updateCurrentUser: async (req, res) => {
         try {
-          const userId = req.user.userId; // use authenticated user from middleware
+          const userId = req.user.userId;  // use authenticated user from middleware
       
           const updateFields = {};
       
-          // Allow optional updates
+            //Allow optional updates
           if (req.body.name) updateFields.name = req.body.name;
           if (req.body.email) updateFields.email = req.body.email;
           if (req.body.profilePicture) updateFields.profilePicture = req.body.profilePicture;
       
-          // If password is being updated, hash it
+            //If password is being updated, hash it
           if (req.body.password) {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             updateFields.password = hashedPassword;
@@ -142,8 +216,9 @@ const userController = {
           return res.status(500).json({ message: error.message });
         }
       },
-
-      // * Delete a user
+        // Change password
+     
+        //Delete a user
 
       deleteUser: async (req, res) => {
         try {
@@ -163,7 +238,9 @@ const userController = {
         } catch (error) {
           res.status(500).json({ message: "Server error" });
         }
-      }
+      },
+      
+      
       
     };
     
