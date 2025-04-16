@@ -9,3 +9,12 @@ node_modules/
 
 # Ignore code runner file
 tempCodeRUnnerFIle.js
+
+#Ignore README.md
+README.md
+
+# Ignore package-lock.json
+package-lock.json
+
+# Ignore package.json
+package.json

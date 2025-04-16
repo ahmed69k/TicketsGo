@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
 const User = require('./UserSchema');
+const Event = require('./EventSchema');
 
-const BookingSchema = new mongoose.Schema({
+const bookedTicket = new mongoose.Schema({
     bookingUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    event : {
+    bookingEvent : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event',
         required: true
-    },
+    }});
+    
+
+const BookingSchema = new mongoose.Schema({
+    bookedTicket: [bookedTicket],
     numOfTickets: {
         type: Number,
         required: true,
