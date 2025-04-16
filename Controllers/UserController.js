@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 const secretKey = process.env.SECRET_KEY;
 const nodemailer = require("nodemailer");
 
+
   
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
@@ -27,12 +28,9 @@ const nodemailer = require("nodemailer");
       `,
     });
   };
-  console.log("🔥 Controller file is being read");
+  console.log("Controller file is being read");
 
 const userController = {
-
-  
-    //Forget password
     forgetPassword: async (req, res) => {
       try {
         
@@ -49,13 +47,15 @@ const userController = {
           process.env.SECRET_KEY,
           { expiresIn: "1h" }
         );
-    
+
         const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+    
+        
     
         await transporter.sendMail({
           from: `"Your App" <${process.env.EMAIL_USER}>`,
           to: user.email,
-          subject: "Reset Your Password",
+          subject: "SEProject: Reset Your Password!",
           html: `
             <h3>Reset your password</h3>
             <p>Click the link below to reset your password:</p>
@@ -65,11 +65,11 @@ const userController = {
         });
     
         return res.status(200).json({
-          message: "Password reset link sent to your email.",
+          message: "Password reset link sent to your email!",
         });
     
       } catch (err) {
-        console.error("❌ Error in forgetPassword:", err);
+        console.error("Error in Forget Password!", err);
         return res.status(500).json({ message: "Server Error" });
       }
     },
