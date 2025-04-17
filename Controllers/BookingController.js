@@ -64,4 +64,4 @@ const bookingController = {
     }
 };
 
-module.exports = { createBooking, bookingController };
+module.exports = bookingController;
