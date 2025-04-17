@@ -9,4 +9,8 @@ const router = express.Router();
 router.get(
   '/bookingDetails/:id',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getBookingDetails);
 
+router.post(
+    '/createBooking',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.createBooking);
+  
+
 module.exports = router;
