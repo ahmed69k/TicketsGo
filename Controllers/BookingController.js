@@ -3,14 +3,16 @@ const eventModel = require('../Models/EventSchema');
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const createBooking = async (req, res) => {
+const bookingController = {
+
+  createBooking : async (req, res) => {
     try {
       const userId = req.user.userId;
       const { eventId, numOfTickets } = req.body;
   
       const event = await eventModel.findById(eventId);
       if (!event) {
-        return res.status(404).json({ message: 'Event not found' });
+        return res.status(404).json({ message: 'Event not found'});
       }
   
       if (event.remainingTickets < numOfTickets) {
@@ -39,9 +41,7 @@ const createBooking = async (req, res) => {
       console.error('Booking Error:', error);
       res.status(500).json({ message: 'Server Error while booking' });
     }
-};
-
-const bookingController = {
+},
     getBookingDetails: async (req, res) => {
       try {
         const bookingId = req.params.id;
