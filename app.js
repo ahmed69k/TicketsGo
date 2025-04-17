@@ -8,9 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 const userRouter = require("./Routers/UserRouter");
 const eventRouter = require("./Routers/EventRouter");
-const authenticationMiddleware = require("./Middleware/AuthenticationMiddleware");
 const bookingRouter = require("./Routers/BookingRouter");
-
+const authenticationMiddleware = require("./Middleware/AuthenticationMiddleware");
 
 require("dotenv").config();
 
@@ -27,7 +26,6 @@ app.use('/api/v1/', userRouter);
 app.use(authenticationMiddleware);
 app.use("/api/v1/events", eventRouter);
 app.use("/api/v1/bookings", bookingRouter);
-
 
 const db_name = process.env.DB_NAME;
 const db_url = `mongodb+srv://SE_Fel_Geib:${encodeURIComponent(process.env.DB_PASS)}@se-clouddb.rdyygqc.mongodb.net/?retryWrites=true&w=majority&appName=SE-CloudDB`;
