@@ -15,7 +15,7 @@ const eventController = {
                 ticketPrice,
                 totalTickets,
                 remainingTickets,
-                Creator: req.user.name
+                Creator: req.user.id
 
             });
             await newEvent.save();
