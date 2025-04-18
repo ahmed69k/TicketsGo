@@ -61,8 +61,50 @@ const bookingController = {
         console.error("System Error:", e);
         res.status(500).json({ message: "Internal Server Error" });
       }
+    },
+    cancelBooking: async (req, res) => {
+      const session = await mongoose.startSession();
+      session.startTransaction();
+  
+      try {
+        const bookingId = req.params.id;
+        const userId = req.user.userId;
+  
+        const booking = await bookingModel.findOne({
+          _id: bookingId,
+          "bookedTicket.bookingUser": userId,
+        });
+  
+        if (!booking) {
+          return res.status(404).json({ message: "Booking not found or unauthorized" });
+        }
+  
+        const event = await eventModel.findById(booking.bookedTicket[0].bookingEvent);
+        if (!event) {
+          return res.status(404).json({ message: "Event not found" });
+        }
+  
+        event.remainingTickets += booking.numOfTickets;
+        await event.save({ session });
+  
+        await bookingModel.deleteOne({ _id: bookingId });
+  
+        await session.commitTransaction();
+        session.endSession();
+  
+        return res.status(200).json({
+          message: 'Booking canceled successfully',
+          eventId: event._id,
+          newRemainingTickets: event.remainingTickets,
+        });
+      } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        console.error('Cancellation Error:', error);
+        res.status(500).json({ message: 'Server Error while canceling booking' });
+      }
     }
-};
+  };
 
 module.exports = bookingController;
 
