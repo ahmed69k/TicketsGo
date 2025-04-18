@@ -18,8 +18,6 @@ router.post("/register", userController.register);
 // * login
 router.post("/login", userController.login);
 
-
-
 // * get all users
 router.get("/users",authenticationMiddleware,authorizationMiddleware(['System Admin']),userController.getAllUsers);
   
@@ -37,5 +35,8 @@ router.delete("/users/:id",authenticationMiddleware,authorizationMiddleware(['Sy
 
 // * Get a user by ID
 router.get("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.getUser);
+
+// * Get current user’s events
+router.get("/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getMyEvents);
 
 module.exports = router; 
