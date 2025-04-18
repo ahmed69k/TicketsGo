@@ -264,9 +264,10 @@ const userController = {
         res.status(500).json({ message: "Server error" });
       }
     },
+    
     getMyEvents: async (req, res) => {
             try {
-                const organizerId = req.user.id;
+                const organizerId = req.user.userId;
                 const events = await eventModel.find({ Creator: organizerId });
                 res.status(200).json(events);
             } catch (error) {

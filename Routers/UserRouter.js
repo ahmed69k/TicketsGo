@@ -37,6 +37,6 @@ router.delete("/users/:id",authenticationMiddleware,authorizationMiddleware(['Sy
 router.get("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.getUser);
 
 // * Get current user’s events
-router.get("/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getMyEvents);
+router.get("/users/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), userController.getMyEvents);
 
 module.exports = router; 
