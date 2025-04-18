@@ -11,7 +11,13 @@ router.post(
 router.get(
   '/:id',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getBookingDetails);
 
-
+  router.get(
+    '/:id/',
+    authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getUserBookings);
+  
+  router.delete(
+    '/:id',
+    authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.cancelBooking);
   
 
 module.exports = router;

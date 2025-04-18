@@ -24,4 +24,12 @@ router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organi
 // * Update an event's status
 router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
 
+// * Get all events created by the current organizer
+router.get("/organizer/myevents", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getMyEvents);
+
+// * Get analytics for an event
+router.get("/analytics/:id", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);
+
+
+
 module.exports = router;

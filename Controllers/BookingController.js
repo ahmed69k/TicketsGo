@@ -62,6 +62,22 @@ const bookingController = {
         res.status(500).json({ message: "Internal Server Error" });
       }
     },
+
+    getUserBookings: async (req, res) => {
+      try {
+        const userId = req.user.userId;
+    
+        const bookings = await bookingModel.find({
+          "bookedTicket.bookingUser": userId
+        });
+    
+        return res.status(200).json(bookings);
+      } catch (error) {
+        console.error("Error fetching user bookings:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    },
+
     
     cancelBooking: async (req, res) => {
       const session = await mongoose.startSession();
