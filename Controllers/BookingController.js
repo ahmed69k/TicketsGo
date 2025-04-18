@@ -62,6 +62,7 @@ const bookingController = {
         res.status(500).json({ message: "Internal Server Error" });
       }
     },
+    
     cancelBooking: async (req, res) => {
       const session = await mongoose.startSession();
       session.startTransaction();
