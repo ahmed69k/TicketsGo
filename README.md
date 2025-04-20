@@ -4,5 +4,6 @@ In this project, we will develop a full-stack web application to create an onlin
 This system will allow users to browse, search, and purchase tickets for various events such as concerts,
 sports games, theater shows, and more.
 
-Task 1 Deadline: 7/3/2025, 11:59PM
-Task 2 Deadline: 21/4/2025. 11:59PM
+Deadline Task 1: 7/3/2024, 11:59PM
+
+Deadline Task 2: 21/4/2025, 11:59PM

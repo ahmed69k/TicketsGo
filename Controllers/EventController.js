@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { get } = require('http');
 const eventModel = require('../Models/EventSchema');
 
 const eventController = {
@@ -15,7 +16,7 @@ const eventController = {
                 ticketPrice,
                 totalTickets,
                 remainingTickets,
-                Creator: req.user.name
+                Creator: req.user.userId
 
             });
             await newEvent.save();
@@ -100,7 +101,37 @@ const eventController = {
             console.error("Error updating event status!", error);
             res.status(500).json({ message: "Server Error!" });
         }
-    }
+        
+        
+    },
+    getEventAnalytics: async (req, res) => {
+        try {
+            const organizerId = req.user.id;
+            const eventId = req.params.id;
+    
+            const event = await eventModel.findOne({ _id: eventId, Creator: organizerId });
+            if (!event) {
+                return res.status(404).json({ message: "Event not found or unauthorized" });
+            }
+    
+            const bookings = await bookingModel.find({ "bookedTicket.bookingEvent": eventId });
+    
+            const totalTicketsSold = bookings.reduce((acc, booking) => acc + booking.numOfTickets, 0);
+            const totalRevenue = bookings.reduce((acc, booking) => acc + booking.totalPrice, 0);
+    
+            res.status(200).json({
+                eventId,
+                totalTicketsSold,
+                totalRevenue,
+                remainingTickets: event.remainingTickets
+            });
+        } catch (error) {
+            console.error("Error fetching event analytics!", error);
+            res.status(500).json({ message: "Server Error!" });
+        }
+    },
+    
+
 }
 
 module.exports = eventController;
