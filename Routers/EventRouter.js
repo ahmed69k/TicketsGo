@@ -13,7 +13,7 @@ router.post("/", authenticationMiddleware, authorizationMiddleware(['Organizer']
 router.get("/", eventController.getAllApprovedEvents);
 
 // * Get all events $
-router.get("/all", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.getAllEvents);
+router.get("/all", authenticationMiddleware, authorizationMiddleware(['System Admin','Organizer']), eventController.getAllEvents);
 
 // * Get an event by ID $
 router.get("/:id", eventController.getEvent);
@@ -27,11 +27,8 @@ router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organi
 // // * Update an event's status
 // router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
 
-// * Get the analytics of the current user’s events
-router.get("/analytics/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);
 
-
-// * Get an event by ID
+// * Get an event by ID $
 router.get("/:id", eventController.getEvent);
 
 

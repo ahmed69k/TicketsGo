@@ -5,14 +5,14 @@ const mongoose = require('mongoose');
 
 const bookingController = {
 
-  createBooking : async (req, res) => {
+  createBooking: async (req, res) => {
     try {
       const userId = req.user.userId;
       const { eventId, numOfTickets } = req.body;
   
       const event = await eventModel.findById(eventId);
       if (!event) {
-        return res.status(404).json({ message: 'Event not found'});
+        return res.status(404).json({ message: 'Event not found' });
       }
   
       if (event.remainingTickets < numOfTickets) {
@@ -21,8 +21,9 @@ const bookingController = {
   
       const totalPrice = numOfTickets * event.ticketPrice;
   
-      event.remainingTickets -= numOfTickets;
-      await event.save();
+      await eventModel.findByIdAndUpdate(eventId, {
+        $inc: { remainingTickets: -numOfTickets }
+      });
   
       const newBooking = new bookingModel({
         bookedTicket: [{ bookingUser: userId, bookingEvent: eventId }],
@@ -41,7 +42,8 @@ const bookingController = {
       console.error('Booking Error:', error);
       res.status(500).json({ message: 'Server Error while booking' });
     }
-},
+  },
+  
     getBookingDetails: async (req, res) => {
       try {
         const bookingId = req.params.id;
@@ -80,49 +82,31 @@ const bookingController = {
 
     
     cancelBooking: async (req, res) => {
-      const session = await mongoose.startSession();
-      session.startTransaction();
-  
-      try {
+      try{
         const bookingId = req.params.id;
         const userId = req.user.userId;
-  
-        const booking = await bookingModel.findOne({
+
+        const booking = await bookingModel.findOneAndDelete({
           _id: bookingId,
           "bookedTicket.bookingUser": userId,
         });
-  
+
         if (!booking) {
           return res.status(404).json({ message: "Booking not found or unauthorized" });
         }
-  
-        const event = await eventModel.findById(booking.bookedTicket[0].bookingEvent);
-        if (!event) {
-          return res.status(404).json({ message: "Event not found" });
-        }
-  
-        event.remainingTickets += booking.numOfTickets;
-        await event.save({ session });
-  
-        await bookingModel.deleteOne({ _id: bookingId });
-  
-        await session.commitTransaction();
-        session.endSession();
-  
-        return res.status(200).json({
-          message: 'Booking canceled successfully',
-          eventId: event._id,
-          newRemainingTickets: event.remainingTickets,
-        });
-      } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-        console.error('Cancellation Error:', error);
-        res.status(500).json({ message: 'Server Error while canceling booking' });
+        await eventModel.findByIdAndUpdate(
+          booking.bookedTicket[0].bookingEvent,
+          { $inc: { remainingTickets: booking.numOfTickets } }
+        )
+        
+        return res.status(200).json({ message: "Booking cancelled successfully" });
+      }
+      catch (error) {
+        console.error("Error cancelling booking:", error);
+        res.status(500).json({ message: "Internal Server Error" });
       }
     }
   };
-
 module.exports = bookingController;
 
 

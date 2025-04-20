@@ -1,11 +1,13 @@
 require('dotenv').config();
 const { get } = require('http');
 const eventModel = require('../Models/EventSchema');
+const bookingModel = require('../Models/BookingSchema');
+const mongoose = require('mongoose');
 
 const eventController = {
     create: async (req, res) => {
         try {
-            const { title, description, date, location, category, image, ticketPrice, totalTickets, remainingTickets, Creator } = req.body;
+            const { title, description, date, location, category, image, ticketPrice, totalTickets, remainingTickets} = req.body;
             const newEvent = new eventModel({
                 title,
                 description,
@@ -123,30 +125,47 @@ const eventController = {
     },
     getEventAnalytics: async (req, res) => {
         try {
-            const organizerId = req.user.id;
-            const eventId = req.params.id;
+            const organizerId = req.user.userId;
+            const events = await eventModel.find({ Creator: organizerId });
     
-            const event = await eventModel.findOne({ _id: eventId, Creator: organizerId });
-            if (!event) {
-                return res.status(404).json({ message: "Event not found or unauthorized" });
+            const eventAnalytics = [];
+
+            for (const event of events) {
+                const eventId = event._id;
+                const foundEvent = await eventModel.findOne({ _id: eventId, Creator: organizerId });
+    
+                if (!foundEvent) {
+                    return res.status(404).json({ message: "Event not found or unauthorized" });
+                }
+
+                const bookings = await bookingModel.find({ "bookedTicket.bookingEvent": eventId });
+                const eventTitle = foundEvent.title;
+                const totalTicketsSold = bookings.reduce((acc, booking) => acc + booking.numOfTickets, 0);
+                const totalRevenue = bookings.reduce((acc, booking) => acc + booking.totalPrice, 0);
+                const percentageSold = (totalTicketsSold / foundEvent.totalTickets) * 100; 
+    
+                eventAnalytics.push({
+                    eventTitle: eventTitle,
+                    eventId: eventId,
+                    totalTicketsSold: totalTicketsSold,
+                    totalRevenue: totalRevenue,
+                    remainingTickets: foundEvent.remainingTickets,
+                    percentageSold: percentageSold + "%"
+                });
             }
     
-            const bookings = await bookingModel.find({ "bookedTicket.bookingEvent": eventId });
+            res.status(200).json(eventAnalytics);
     
-            const totalTicketsSold = bookings.reduce((acc, booking) => acc + booking.numOfTickets, 0);
-            const totalRevenue = bookings.reduce((acc, booking) => acc + booking.totalPrice, 0);
-    
-            res.status(200).json({
-                eventId,
-                totalTicketsSold,
-                totalRevenue,
-                remainingTickets: event.remainingTickets
-            });
         } catch (error) {
             console.error("Error fetching event analytics!", error);
             res.status(500).json({ message: "Server Error!" });
         }
-    },
+    }
+    
+      
+      
+      
+      
     
 
 }
