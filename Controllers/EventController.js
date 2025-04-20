@@ -34,6 +34,15 @@ const eventController = {
             res.status(500).json({ message: "Server Error!" });
         }
     },
+    getAllApprovedEvents: async (req, res) => {
+        try {
+            const events = await eventModel.find({ Status: "Approved" });
+            res.status(200).json(events);
+        } catch (error) {
+            console.error("Error fetching approved events!", error);
+            res.status(500).json({ message: "Server Error!" });
+        }
+    },
     getEvent: async (req, res) => {
         try{
             const event = await eventModel.findById(req.params.id);
@@ -51,9 +60,17 @@ const eventController = {
             const event = await eventModel.findByIdAndUpdate(
                 req.params.id,
                 { 
+                    title: req.body.title,
+                    description: req.body.description,
+                    category: req.body.category,
+                    date: req.body.date,
+                    image: req.body.image,
+                    ticketPrice: req.body.ticketPrice,
+                    totalTickets: req.body.totalTickets,
                     remainingTickets: req.body.remainingTickets,
                     date: req.body.date,
-                    location: req.body.location
+                    location: req.body.location,
+                    Status: req.body.Status
                 },
                 { new: true }
             );

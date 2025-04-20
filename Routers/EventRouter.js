@@ -9,8 +9,11 @@ const router = express.Router();
 // * Create an event
 router.post("/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.create);
 
+// * Get all approved events
+router.get("/", eventController.getAllApprovedEvents);
+
 // * Get all events
-router.get("/", eventController.getAllEvents);
+router.get("/all", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.getAllEvents);
 
 // * Get an event by ID
 router.get("/:id", eventController.getEvent);
@@ -21,7 +24,7 @@ router.put("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer
 // * Delete an event by ID
 router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.deleteEvent);
 
-// * Update an event's status
-router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
+// // * Update an event's status
+// router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
 
 module.exports = router;
