@@ -1,4 +1,5 @@
 const userModel = require('../Models/UserSchema');
+const eventModel = require('../Models/EventSchema');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const bcrypt = require('bcrypt');

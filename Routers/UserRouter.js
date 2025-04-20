@@ -1,5 +1,7 @@
 const express = require("express");
 const userController = require("../Controllers/UserController");
+const eventController = require("../Controllers/EventController");
+const mongoose = require("mongoose");
 const authorizationMiddleware = require('../Middleware/AuthorizationMiddleware');
 const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware');
 const bookingController = require("../Controllers/BookingController");
@@ -37,11 +39,14 @@ router.delete("/users/:id",authenticationMiddleware,authorizationMiddleware(['Sy
 // * Get current user’s bookings
 router.get("/users/bookings",authenticationMiddleware,authorizationMiddleware(['Standard User']),bookingController.getUserBookings);
 
-// * Get current user’s events
-router.get("/users/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), userController.getMyEvents);
+// * Get current organizer's events $
+router.get("/users/events", authenticationMiddleware, authorizationMiddleware (['Organizer']), userController.getMyEvents);
 
-// * Get a user by ID
+// * Get a user by ID $
 router.get("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.getUser);
+
+// * Get the analytics of the current user’s events $
+router.get("/users/events/analytics/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);
 
 
 
