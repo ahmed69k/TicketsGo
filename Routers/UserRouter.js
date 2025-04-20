@@ -2,6 +2,7 @@ const express = require("express");
 const userController = require("../Controllers/UserController");
 const authorizationMiddleware = require('../Middleware/AuthorizationMiddleware');
 const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware');
+const bookingController = require("../Controllers/BookingController");
 
 
 const router = express.Router();
@@ -33,10 +34,15 @@ router.put("/users/:id",authenticationMiddleware,authorizationMiddleware(['Syste
 // * Delete a user
 router.delete("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.deleteUser);
 
+router.get("/users/bookings",authenticationMiddleware,authorizationMiddleware(['Standard User']),bookingController.getUserBookings);
+
 // * Get a user by ID
+router.get("/users/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), userController.getMyEvents);
+
 router.get("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.getUser);
 
 // * Get current user’s events
-router.get("/users/events", authenticationMiddleware, authorizationMiddleware(['Organizer']), userController.getMyEvents);
+//* get current user’s bookings
+
 
 module.exports = router; 
