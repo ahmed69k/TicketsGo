@@ -6,21 +6,26 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 
 const router = express.Router();
 
-// * Create an event
+// * Create an event $
 router.post("/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.create);
 
-// * Get all events
-router.get("/", eventController.getAllEvents);
+// * Get all approved events $
+router.get("/", eventController.getAllApprovedEvents);
 
+// * Get all events $
+router.get("/all", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.getAllEvents);
 
-// * Update an event by ID
+// * Get an event by ID $
+router.get("/:id", eventController.getEvent);
+
+// * Update an event by ID $
 router.put("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.updateEvent);
 
-// * Delete an event by ID
+// * Delete an event by ID $
 router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.deleteEvent);
 
-// * Update an event's status
-router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
+// // * Update an event's status
+// router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
 
 // * Get the analytics of the current user’s events
 router.get("/analytics/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);

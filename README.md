@@ -1,8 +1,6 @@
-## Developping a FullStack WebApp 
+Task 1 : Event & Booking Schemas
 
-In this project, we will develop a full-stack web application to create an online event ticketing system.
-This system will allow users to browse, search, and purchase tickets for various events such as concerts,
-sports games, theater shows, and more.
+Task 2 : Event Controller + Router + basa3ed fe kolo 😛
 
 Deadline Task 1: 7/3/2024, 11:59PM
 
