@@ -5,13 +5,17 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 
 const router = express.Router();
 
-router.post(
-  '/',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.createBooking);
+// * Get current user’s bookings
+router.get('/',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getUserBookings);
 
-router.get(
-  '/:id',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getBookingDetails);
+// * Book tickets for an event 
+router.post('/',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.createBooking);
 
+// * Get booking details by ID
+router.get('/:id',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.getBookingDetails);
 
+// * Cancel a booking   
+router.delete('/:id',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.cancelBooking);
   
 
 module.exports = router;

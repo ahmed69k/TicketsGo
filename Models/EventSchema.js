@@ -41,7 +41,7 @@ const eventSchema = new mongoose.Schema({
     Creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: false},
+      required: true},
 
     Timestamp: {
       type: Date, 
