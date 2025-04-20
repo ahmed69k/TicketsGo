@@ -12,7 +12,6 @@ router.post("/", authenticationMiddleware, authorizationMiddleware(['Organizer']
 // * Get all events
 router.get("/", eventController.getAllEvents);
 
-
 // * Update an event by ID
 router.put("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.updateEvent);
 
@@ -24,7 +23,6 @@ router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['Sy
 
 // * Get the analytics of the current user’s events
 router.get("/analytics/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);
-
 
 // * Get an event by ID
 router.get("/:id", eventController.getEvent);

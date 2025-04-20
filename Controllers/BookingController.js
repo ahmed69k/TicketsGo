@@ -21,7 +21,6 @@ const bookingController = {
   
       const totalPrice = numOfTickets * event.ticketPrice;
   
-      // ✅ Update remaining tickets without triggering validation errors
       await eventModel.findByIdAndUpdate(eventId, {
         $inc: { remainingTickets: -numOfTickets }
       });
@@ -99,7 +98,6 @@ const bookingController = {
           return res.status(404).json({ message: "Booking not found or unauthorized" });
         }
     
-        // Use $inc to avoid schema validation
         await eventModel.findByIdAndUpdate(
           booking.bookedTicket[0].bookingEvent,
           { $inc: { remainingTickets: booking.numOfTickets } },

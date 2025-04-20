@@ -5,8 +5,6 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 
 const router = express.Router();
 
-// * Get current user’s bookings
-
 // * Book tickets for an event 
 router.post('/',authenticationMiddleware,authorizationMiddleware(["Standard User"]),bookingController.createBooking);
 
