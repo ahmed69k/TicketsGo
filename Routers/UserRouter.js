@@ -7,31 +7,31 @@ const bookingController = require("../Controllers/BookingController");
 
 const router = express.Router();
 
-// * forgot password
-router.put("/forget-password", userController.forgetPassword);
+// * forgot password $
+router.get("/forgot-password", userController.forgetPassword);
 
-// * reset password
+// * reset password $
 router.put("/reset-password", userController.resetPassword);
 
-// * register
+// * register $
 router.post("/register", userController.register);
 
-// * login
+// * login $
 router.post("/login", userController.login);
 
-// * get all users
+// * get all users $
 router.get("/users",authenticationMiddleware,authorizationMiddleware(['System Admin']),userController.getAllUsers);
   
-// * Get current user
+// * Get current user $
 router.get("/users/profile",authenticationMiddleware,authorizationMiddleware(['Standard User', 'Organizer', 'System Admin']), userController.getCurrentUser);
 
-// * Update user info by the user
+// * Update user info by the user $
 router.put("/users/profile",authenticationMiddleware,authorizationMiddleware(['Standard User', 'Organizer', 'System Admin']), userController.updateCurrentUser);
 
-// * Update user role by admin
+// * Update user role by admin $
 router.put("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.updateAdminUser);
 
-// * Delete a user
+// * Delete a user $
 router.delete("/users/:id",authenticationMiddleware,authorizationMiddleware(['System Admin']), userController.deleteUser);
 
 // * Get current user’s bookings

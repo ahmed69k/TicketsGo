@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const secretKey = process.env.SECRET_KEY;
 
 module.exports = function authenticationMiddleware(req, res, next) {
-  console.log("🔐 Inside auth middleware");
+  console.log("Inside auth middleware");
 
   let token;
 
