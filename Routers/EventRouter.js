@@ -30,7 +30,6 @@ router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organi
 // * Get the analytics of the current user’s events
 router.get("/analytics/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.getEventAnalytics);
 
-
 // * Get an event by ID
 router.get("/:id", eventController.getEvent);
 
