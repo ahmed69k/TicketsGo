@@ -6,4 +6,6 @@ sports games, theater shows, and more.
 
 Deadline Task 1: 7/3/2025, 11:59PM
 
-Deadline Task 2: 21/5/2025, 11:59PM
+Deadline Task 2: 21/4/2025, 11:59PM
+
+Deadine Task 3: 23/5/2024 11:59PM
