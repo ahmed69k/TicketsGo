@@ -1,0 +1,9 @@
+.profile-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.profile-container p {
+    
+    margin-bottom: 5px;   /* More space between lines */
+}

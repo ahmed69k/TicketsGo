@@ -17,7 +17,8 @@ function Login() {
     try {
       await axios.post("http://localhost:3000/api/v1/login", { email, password }, { withCredentials: true });
       console.log("Login Successful!");
-      navigate('/'); // 🔥 go to homepage on success
+      navigate('/profile');
+      window.location.reload()
     } catch (e) {
         setError("Invalid email or password.")
       console.log("Login Error", e);

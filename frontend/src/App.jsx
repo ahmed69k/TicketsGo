@@ -7,11 +7,9 @@ import AppRoutes from "./routes/Routes.jsx"
 
 function App() {
   return (
-  <AuthProvider>
       <StrictMode>
       <AppRoutes />
     </StrictMode>
-  </AuthProvider>
 
     
   )

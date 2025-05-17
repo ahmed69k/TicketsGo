@@ -21,6 +21,9 @@ router.post("/register", userController.register);
 // * login $
 router.post("/login", userController.login);
 
+// * logout
+router.post('/logout',userController.logout);
+
 // * get all users $
 router.get("/users",authenticationMiddleware,authorizationMiddleware(['System Admin']),userController.getAllUsers);
   
