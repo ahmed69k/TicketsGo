@@ -34,3 +34,7 @@ button:focus-visible {
   margin-top: 2rem;
   align-items: center;
 }
+
+.logged-in{
+    text-align: center;
+}

@@ -4,9 +4,6 @@ import Register from "../pages/Register.jsx"; // create this file/component
 import Login from "../pages/Login.jsx"
 import Navbar from "../components/Navbar.jsx"
 
-
-
-
 function AppRoutes() {
   return (
     <BrowserRouter>
