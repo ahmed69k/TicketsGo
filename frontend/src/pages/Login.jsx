@@ -62,7 +62,7 @@ function Login() {
         />
     </div>
     <div className='submit-wrapper'>
-        <button className='submit'type="submit">Submit</button>
+        <button className='button-lr'type="submit">Submit</button>
     </div>
     </form>
       </div>

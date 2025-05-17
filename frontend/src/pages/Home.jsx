@@ -19,10 +19,10 @@ function Home(){
           <h2 className ='h2-home'> To book tickets please log-in or register:</h2>
           <div className='button-container'>
             <Link to='/login'>
-              <button>Login</button>
+              <button className="button-lr">Login</button>
             </Link>
             <Link to='/register'>
-              <button>Register</button>
+              <button className="button-lr">Register</button>
             </Link>
           </div>
         </div>
