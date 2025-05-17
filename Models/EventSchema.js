@@ -40,12 +40,18 @@ const eventSchema = new mongoose.Schema({
 
     Creator: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', 
+      ref: 'User',
       required: true},
 
     Timestamp: {
       type: Date, 
-      default:Date.now}
+      default:Date.now},
+      
+    Status: {
+      type: String,
+      enum: ['Approved', 'Pending', 'Declined'],
+      default: 'Pending'
+    }
 });
 
 const Event = mongoose.model('Event', eventSchema);
