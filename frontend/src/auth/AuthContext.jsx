@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
   // Fetch current user on app load
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }) => {
       }
     );
     setUser(null);
+    navigate('/')
   ;
   };
 

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import '../styling/Navbar.css';
+import axios from 'axios'
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const {user,logout} = useAuth();
 
   return (
     <nav className="navbar">
@@ -15,7 +16,7 @@ const Navbar = () => {
           {user ? (
             <>
               <li><Link to="/profile" className="nav-link">Profile</Link></li>
-              <li><Link to="/" className="nav-link">Logout</Link></li>
+              <li><button className="button-nav-link" onClick={logout}>Logout</button></li>
             </>
           ) : (
             <>
