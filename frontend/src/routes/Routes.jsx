@@ -8,7 +8,7 @@ import Profile from "../pages/Profile.jsx";
 function AppRoutes() {
   return (
     <>
-    <Navbar/>
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

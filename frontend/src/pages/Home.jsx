@@ -16,7 +16,7 @@ function Home(){
         ):
         <div>
           <h1 className='h1-home'> Welcome to TicketsGo! </h1>
-          <h2 className ='h2-home'> To book tickets please log-in or register:</h2>
+          <h2 className ='h2-home'> To book tickets or check out events please log-in or register:</h2>
           <div className='button-container'>
             <Link to='/login'>
               <button className="button-lr">Login</button>
