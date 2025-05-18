@@ -114,7 +114,7 @@ const userController = {
     forgetPassword: async (req, res) => {
       try {
         
-        const { email } = req.body;
+const { email } = req.query; // ✅ not req.body
     
         const user = await userModel.findOne({ email });
     
@@ -128,7 +128,7 @@ const userController = {
           { expiresIn: "1h" }
         );
 
-        const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+const resetLink = `http://localhost:5173/reset-password?token=${token}`;
     
         
     
