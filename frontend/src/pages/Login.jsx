@@ -20,7 +20,7 @@ function Login() {
       console.log("Login Successful!");
       setTimeout(()=>{
         navigate('/profile');
-        window.location.reload()
+        window.location.reload();
       },1000)
       
     } catch (e) {
