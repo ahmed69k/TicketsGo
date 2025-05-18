@@ -10,8 +10,16 @@ function Home(){
       <>
         {user ? (
           <div className = 'logged-in'>
-            <h1>Hello {user.name}</h1>
-          </div>
+            <h1>Hello 👋, {user.name}</h1>
+            <div className="button-container">
+              {user.role === 'Standard User' ? (
+                <Link to='/approvedEvents'><button className="button-lr">Events</button></Link>
+              ) : user.role === 'System Admin' ? (
+                <Link><button className="button-lr">All Events</button></Link>
+              ) : null}
+            </div>
+
+            </div>
           
         ):
         <div>
