@@ -1,0 +1,35 @@
+{
+  "name": "se-project",
+  "version": "1.0.0",
+  "description": "In this project, we will develop a full-stack web application to create an online event ticketing system.\r This system will allow users to browse, search, and purchase tickets for various events such as concerts,\r sports games, theater shows, and more.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmed69k/SE-PROJECT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ahmed69k/SE-PROJECT/issues"
+  },
+  "homepage": "https://github.com/ahmed69k/SE-PROJECT#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.15.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^7.0.3",
+    "nodemon": "^3.1.10"
+  }
+}
