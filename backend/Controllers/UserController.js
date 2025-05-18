@@ -229,42 +229,39 @@ const resetLink = `http://localhost:5173/reset-password?token=${token}`;
       }
     },
     
-    updateCurrentUser: async (req, res) => {
-      try {
-        const userId = req.user.userId;
+  updateCurrentUser: async (req, res) => {
+  try {
+    const userId = req.user.userId;
 
-        if (req.body.password) {
-          const bcrypt = require('bcrypt');
-          let hashedPassword = await bcrypt.hash(req.body.password, 10);
-        }
-    
-        const updatedUser = await userModel.findByIdAndUpdate(
-          userId,
-          {
-            name: req.body.name,
-            email: req.body.email,
-            profilePicture: req.body.profilePicture,
-          },
-          {
-            new: true,
-            runValidators: true
-          }
-        );
-    
-        if (!updatedUser) {
-          return res.status(404).json({ message: "User not found 💔" });
-        }
-    
-        return res.status(200).json({
-          user: updatedUser,
-          message: "Profile updated successfully 🚀"
-        });
-    
-      } catch (error) {
-        console.error("Error updating user profile:", error);
-        return res.status(500).json({ message: "Server Error 🥀", error: error.message });
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      {
+        name: req.body.name,
+        email: req.body.email,
+        profilePicture: req.body.profilePicture,
+      },
+      {
+        new: true,
+        runValidators: true
       }
-    },
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found 💔" });
+    }
+
+    return res.status(200).json({
+      user: updatedUser,
+      message: "Profile updated successfully 🚀"
+    });
+
+  } catch (error) {
+    console.error("Error updating user profile:", error);
+    return res.status(500).json({ message: "Server Error 🥀", error: error.message });
+  }
+}, // ✅ Comma added here
+
+
 
     deleteUser: async (req, res) => {
       try {
