@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../styling/Login.css'
+import {toast} from 'react-toastify'
 
 axios.defaults.withCredentials = true;
 
@@ -17,8 +18,11 @@ function Login() {
     try {
       await axios.post("http://localhost:3000/api/v1/login", { email, password }, { withCredentials: true });
       console.log("Login Successful!");
-      navigate('/profile');
-      window.location.reload()
+      setTimeout(()=>{
+        navigate('/profile');
+        window.location.reload()
+      },1000)
+      
     } catch (e) {
         setError("Invalid email or password.")
       console.log("Login Error", e);
@@ -62,7 +66,7 @@ function Login() {
         />
     </div>
     <div className='submit-wrapper'>
-        <button className='button-lr'type="submit">Submit</button>
+        <button className='button-lr'type="submit" onClick={()=> toast.success("Logged in successfully!")}>Submit</button>
     </div>
     </form>
       </div>
