@@ -50,6 +50,7 @@ function AllEvents(){
                     <p><strong>Description: </strong> {event.description}</p>
                     <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
                     <p><strong>Remaining tickets: </strong>{event.remainingTickets}</p>
+                    <div className='button-group'>
                     {event.Status === "Pending" ? (
                         <>
                         <button className='approve-btn' onClick={() => toast.success('Event approved!')}> Approve</button>
@@ -58,6 +59,7 @@ function AllEvents(){
                         
                     ) : null}
                     <button className='delete-btn'> Delete</button>
+                    </div>
                 
                 </div>
                 

@@ -8,6 +8,7 @@ import ApprovedEvents from "../pages/ApprovedEvents.jsx";
 import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import AllEvents from "../pages/AllEvents.jsx";
 import Unauthorized from "../pages/Unauthorized.jsx";
+import AdminUsersPage from "../pages/AdminUsersPage.jsx";
 
 
 function AppRoutes() {
@@ -34,6 +35,12 @@ function AppRoutes() {
           </ProtectedRoute>}>
         </Route>
         <Route path='/unauthorized' element={<Unauthorized/>}></Route>
+      <Route 
+      path='/users'
+      element={<ProtectedRoute allowedRoles={"System Admin"}>
+        <AdminUsersPage/>
+      </ProtectedRoute>}
+      ></Route>
       </Routes>
       </>
   );
