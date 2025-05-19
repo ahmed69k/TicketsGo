@@ -3,14 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 40px;
+  padding: 0px;
   text-align: center;
-  margin-top: 10px;
+  
+}
+.profile-container h1{
+  color: #ec4899;
+  text-decoration: underline;
 }
 
 .profile-container p {
-  margin-bottom: 5px; /* More space between lines */
+  margin-bottom: 10px; /* More space between lines */
 }
 
 /* Form Styling */
@@ -48,4 +51,35 @@
   justify-content: center;
   margin-top: 20px;
 }
+.name-prof{
+  font-size: 50px;
+  margin-top: 20px;
+  color:#ec4899;
 
+}
+.profile-box{
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem ;
+  width: 30%;                /* 🔥 Wider for buttons */
+  min-width: 250px;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  margin-bottom: 2rem;
+  margin-top:1rem;
+}
+.container-pfp {
+  display: flex;
+  align-items: flex-start; /* aligns items to the top */
+}
+
+.container-pfp p {
+  margin: 0;
+  padding: 0;
+  line-height: 80px; /* vertically aligns text with image if needed */
+}

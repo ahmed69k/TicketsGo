@@ -34,6 +34,7 @@ function AllEvents(){
     console.log(events)
     return(
         <div className="events-container">
+            <h1 className='title-events-all'>All Events</h1>
             <input
                 type="text"
                 placeholder="Search events..."

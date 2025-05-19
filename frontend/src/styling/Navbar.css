@@ -26,6 +26,10 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #ec4899;
+  transition: transform 0.3s ease;
+}
+.name:hover{
+  transform: scale(1.1);
 }
 
 .nav-links {
@@ -35,6 +39,7 @@
   margin: 0;
   padding: 0;
   align-items: center;
+  
 }
 
 .nav-link {
@@ -44,10 +49,11 @@
   transition: color 0.3s ease;
   align-items: center;
   transition: transform 0.3s ease;
+  display: inline-block;
 }
 .nav-link:hover {
   color: #ec4899;
-  transform: scale(1.2) !important;
+  transform: scale(1.1);
 }
 .button-nav-link{
   all:unset;

@@ -59,19 +59,21 @@ function Profile() {
       <h1>Profile</h1>
 
       {!editing ? (
-        <>
-          <p><strong>Name:</strong> {profile.name}</p>
+        <div className='profile-box'>
+          <p className='name-prof'><strong>{profile.name}</strong></p>
           <p><strong>Email:</strong> {profile.email}</p>
           <p><strong>Role:</strong> {profile.role}</p>
-          <p><strong>Profile Picture:</strong> {
+          <div className='container-pfp'>
+          <p style={{margin: 0}}><strong>Profile Picture:</strong> {
             profile.profilePicture
               ? <img src={profile.profilePicture} alt="Profile" style={{ width: 80, height: 80, borderRadius: "50%" }} />
-              : "No Picture"
+              : <span style={{marginLeft: "100px"}}>No Picture Provided</span>
           }</p>
+          </div>
           <div className="submit-wrapper">
             <button onClick={() => setEditing(true)} className='button-lr'>Edit Profile</button>
           </div>
-        </>
+        </div>
       ) : (
         <form onSubmit={handleUpdate} className='profile-form'>
           <div className='input-group'>
