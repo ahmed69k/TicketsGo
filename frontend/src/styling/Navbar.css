@@ -43,6 +43,11 @@
   font-weight: 500;
   transition: color 0.3s ease;
   align-items: center;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover {
+  color: #ec4899;
+  transform: scale(1.2) !important;
 }
 .button-nav-link{
   all:unset;
@@ -54,16 +59,15 @@
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease;
+  align-items: center;
 }
 .button-nav-link:hover{
   color: #ec4899;
+  transform: scale(1.1);
 }
-
-.nav-link:hover {
-  color: #ec4899;
-}
-
 .back2home{
   text-decoration: none;
 }
