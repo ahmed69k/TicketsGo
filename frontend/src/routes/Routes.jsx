@@ -11,6 +11,7 @@ import Unauthorized from "../pages/Unauthorized.jsx";
 import AdminUsersPage from "../pages/AdminUsersPage.jsx";
 import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
+import Peaky from "../pages/peak.jsx";
 
 function AppRoutes() {
   return (
@@ -48,6 +49,7 @@ function AppRoutes() {
 
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path= '/peak' element={<Peaky />}/>
       </Routes>
     </>
   );

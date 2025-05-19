@@ -36,3 +36,27 @@ button:focus-visible {
 .logged-in{
     text-align: center;
 }
+.home-image {
+  max-width: 50%;
+  max-height: 50%;
+  margin-left: 100px;
+  margin-top: 20px;
+  border-radius: 10%;
+}
+.hi-text{
+  margin-top: 150px;
+  min-width: 40%;
+  margin-left: 25px;
+  font-size: large;
+}
+.home-container{
+  display:flex;
+}
+.peak{
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+.peak:hover{
+  color:#ec4899;
+}
