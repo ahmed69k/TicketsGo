@@ -1,0 +1,16 @@
+.peaky-pic{
+    max-width: 50%;
+    margin-left:-7rem;
+    border-radius: 20%;
+}
+.container{
+    display:flex;
+    align-content: center;
+    justify-content: center;
+    width:100%
+}
+.text{
+    margin-left: 50px;
+    min-width:50%;
+    place-content: center;
+}
