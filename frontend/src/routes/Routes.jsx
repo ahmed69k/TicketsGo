@@ -24,7 +24,7 @@ function AppRoutes() {
         <Route
           path="/approvedEvents"
           element={
-            <ProtectedRoute allowedRoles={["Standard User", ""]}>
+            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]}>
               <ApprovedEvents />
             </ProtectedRoute>
           }

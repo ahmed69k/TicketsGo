@@ -12,13 +12,13 @@
   align-items: center;
   transition: box-shadow 0.2s;
   margin-bottom: 2rem;
+  position:relative;
 }
 
 .event-box:hover {
   box-shadow: 0 4px 24px rgba(236, 72, 153, 0.15);
 }
 
-/* Keep the rest of the styles same */
 .event-box h2 {
   color: #ec4899;
   margin-bottom: 0.5rem;
@@ -97,4 +97,13 @@
     border-radius: 0.5rem;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-right:1rem;}
+    margin-right:1rem;
+  }
+  .event-title{
+    color:#ec4899;
+    text-decoration: underline;
+  }
+  .event-box button{
+    margin-top: auto;  /* pushes button down */
+  }
+  

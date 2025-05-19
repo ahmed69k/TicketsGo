@@ -15,10 +15,16 @@
   font-family: inherit;
   background-color: #ec4899;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: 
+    border-color 0.25s,
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.3s;
 }
 button:hover {
-  border-color: #646cff;
+  color: white;
+  transform: scale(1.1);
+
 }
 button:focus,
 button:focus-visible {
@@ -42,6 +48,7 @@ button:focus-visible {
   margin-left: 100px;
   margin-top: 20px;
   border-radius: 10%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .hi-text{
   margin-top: 150px;
@@ -59,4 +66,16 @@ button:focus-visible {
 }
 .peak:hover{
   color:#ec4899;
+}
+.features{
+  margin-top:50px;
+}
+.p1-home{
+  font-size: 23px;
+}
+.fancy-points{
+  margin-left:10px;
+  margin-top:20px;
+  margin-bottom: 20px;
+  list-style-type:none;
 }
