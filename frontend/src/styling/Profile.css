@@ -1,9 +1,51 @@
 .profile-container {
-    text-align: center;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .profile-container p {
-    
-    margin-bottom: 5px;   /* More space between lines */
+  margin-bottom: 5px; /* More space between lines */
 }
+
+/* Form Styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  gap: 15px;
+}
+
+.input-group {
+  width: 100%;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.submit-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
