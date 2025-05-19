@@ -12,7 +12,7 @@ function UserRow({ user, onUpdateRole, onDelete }) {
       <strong>
         Profile Picture: <img src={user.profilePicture||pic} alt={''} className="image" />
       </strong>
-      <p><strong>Joined At: </strong>{user.timestamp}</p>
+      <p><strong>Joined At: </strong>{new Date(user.timestamp).toLocaleDateString()}</p>
       <div style={{ marginTop: "1rem" }}>
         <button className="update-btn" onClick={() => onUpdateRole(user)}>Update Role</button>
         <button className="delete-btn" onClick={() => onDelete(user._id)}>Delete</button>

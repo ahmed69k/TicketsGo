@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import '../styling/Profile.css';
 import { toast } from 'react-toastify';
+import pic from '../assets/defaultpfp.jpg'
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -67,9 +68,10 @@ function Profile() {
           <p style={{margin: 0}}><strong>Profile Picture:</strong> {
             profile.profilePicture
               ? <img src={profile.profilePicture} alt="Profile" style={{ width: 80, height: 80, borderRadius: "50%" }} />
-              : <span style={{marginLeft: "100px"}}>No Picture Provided</span>
+              : <img src={pic} alt="Profile" style={{ width: 80, height: 80, borderRadius: "50%" }} />
           }</p>
           </div>
+          <p> <strong>Joined On: </strong>{new Date(profile.timestamp).toLocaleDateString()}</p>
           <div className="submit-wrapper">
             <button onClick={() => setEditing(true)} className='button-lr'>Edit Profile</button>
           </div>

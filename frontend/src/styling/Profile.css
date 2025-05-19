@@ -7,6 +7,7 @@
   text-align: center;
   
 }
+
 .profile-container h1{
   color: #ec4899;
   text-decoration: underline;
@@ -53,7 +54,7 @@
 }
 .name-prof{
   font-size: 50px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   color:#ec4899;
 
 }
@@ -72,6 +73,9 @@
   transition: box-shadow 0.2s;
   margin-bottom: 2rem;
   margin-top:1rem;
+}
+.profile-box:hover{
+  box-shadow: 0 4px 24px rgba(236, 72, 153, 0.15);
 }
 .container-pfp {
   display: flex;
