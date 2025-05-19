@@ -9,13 +9,9 @@ import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import AllEvents from "../pages/AllEvents.jsx";
 import Unauthorized from "../pages/Unauthorized.jsx";
 import AdminUsersPage from "../pages/AdminUsersPage.jsx";
-<<<<<<< Updated upstream
-
-=======
 import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
->>>>>>> Stashed changes
 
 function AppRoutes() {
   return (
@@ -34,21 +30,6 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-<<<<<<< Updated upstream
-        <Route 
-        path='/allEvents'
-        element ={<ProtectedRoute allowedRoles={"System Admin"}>
-          <AllEvents/> 
-          </ProtectedRoute>}>
-        </Route>
-        <Route path='/unauthorized' element={<Unauthorized/>}></Route>
-      <Route 
-      path='/users'
-      element={<ProtectedRoute allowedRoles={"System Admin"}>
-        <AdminUsersPage/>
-      </ProtectedRoute>}
-      ></Route>
-=======
         <Route
           path="/allEvents"
           element={
@@ -70,7 +51,6 @@ function AppRoutes() {
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path= '/peak' element={<Peaky />}/>
->>>>>>> Stashed changes
       </Routes>
       </>
   );
