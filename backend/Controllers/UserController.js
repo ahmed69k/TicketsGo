@@ -35,17 +35,18 @@ const userController = {
     
     register: async (req,res) =>{
         try{
-            const{name, email, profilePicture, password, role} = req.body;
+            const{name, email, password, role} = req.body;
             const existingUser = await userModel.findOne({email});
             if(existingUser){
                 return res.status(409).json({message:"This email is already associated to another account!"});
             }
             const hashedPassword = await bcrypt.hash(password, 10);
-
+            const profilePicturePath = req.file ? `/uploads/${req.file.filename}` : "";
+          
             const newUser = new userModel({
                 name,
                 email,
-                profilePicture,
+                profilePicture : profilePicturePath,
                 password: hashedPassword,
                 role
             });
