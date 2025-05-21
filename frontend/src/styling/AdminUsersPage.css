@@ -1,0 +1,84 @@
+.users-page {
+  padding: 2rem;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.users-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ec4899;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
+
+.events-container, .users-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  width:100%;
+  box-sizing: border-box;
+}
+
+
+.user-box {
+    all:unset;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem 1.5rem;
+  width: 23%;              /* 4 per row with some gap */
+  min-width: 220px;
+  max-width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  margin-bottom: 2rem;
+}
+
+.user-box:hover {
+  box-shadow: 0 4px 24px rgba(236,72,153,0.15);
+}
+
+.user-box h2 {
+  color: #ec4899;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.user-box p, .user-box strong {
+  color: #374151;
+  margin: 0.2rem 0;
+  font-size: 1rem;
+}
+
+.user-box img.image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border: 2px solid #ec4899;
+  background: #f3f4f6;
+}
+
+.user-box strong {
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.no-event {
+  text-align: center;
+  color: #b91c1c;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
+
+.update-btn{
+    margin-right:10px
+}

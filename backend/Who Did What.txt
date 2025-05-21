@@ -1,0 +1,42 @@
+Task 2: 
+# Mariam: Part(b) + Part(g) + Bonus
+
+/api/v1/register POST Register a new user Public
+/api/v1/login POST Authenticate user and return token Public
+/api/v1/forgetPassword PUT Update user password Public
+/api/v1/users GET Get a list of all users Admin
+/api/v1/users/profile GET Get current user’s profile Authenticated Users
+/api/v1/users/profile PUT Update current user’s profile Authenticated Users
+/api/v1/users/:id GET Get details of a single user Admin
+/api/v1/users/:id PUT Update user’s role Admin
+/api/v1/users/:id DELETE Delete a user Admin
+
+#Malak: Last 2 points in Part(d)
+
+/api/v1/bookings POST Book tickets for an event Standard User
+/api/v1/bookings/:id GET Get booking details by ID Standard User
+
+#Farouk: First 2 points in Part(d)
+
+/api/v1/users/bookings GET Get current user’s bookings Standard User
+/api/v1/users/events GET Get current user’s events Event Organizer
+/api/v1/users/events/analytics GET Get the analytics of the current user’s events Event Organizer
+/api/v1/bookings/:id DELETE Cancel a booking Standard User
+
+#Ahmed: Part(c) + Part(g) + Bonus + Other stuff
+
+/api/v1/events POST Create a new event Event Organizer
+/api/v1/events GET Get list of all events Public
+/api/v1/events/:id GET Get details of a single event Public
+/api/v1/events/:id PUT Update an event Event Organizer or Admin
+/api/v1/events/:id DELETE Delete an event Event Organizer or Admin
+
+Connect the server to the MongoDB database using mongoose.
+
+#Nour: Part (a) + Part (e)
+
+Create the Express server.
+Organize the backend project structure (routes, controllers, middleware, models).
+
+
+

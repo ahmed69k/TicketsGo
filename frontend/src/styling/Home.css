@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-button {
+.button-lr {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -15,15 +15,21 @@ button {
   font-family: inherit;
   background-color: #ec4899;
   cursor: pointer;
-  transition: border-color 0.25s;
-
-
+  transition: 
+    border-color 0.25s,
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.3s;
 }
-button:hover {
-  border-color: #646cff;
+.button-lr:hover {
+  color: white;
+  transform: scale(1.1);
 }
-button:focus,
-button:focus-visible {
+.button-lr:active{
+  transform: scale(0.9);
+}
+.button-lr:focus,
+.button-lr:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -33,4 +39,45 @@ button:focus-visible {
   gap: 1rem;
   margin-top: 2rem;
   align-items: center;
+}
+
+.logged-in{
+    text-align: center;
+}
+.home-image {
+  max-width: 50%;
+  max-height: 50%;
+  margin-left: 100px;
+  margin-top: 20px;
+  border-radius: 10%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.hi-text{
+  margin-top: 150px;
+  min-width: 40%;
+  margin-left: 25px;
+  font-size: large;
+}
+.home-container{
+  display:flex;
+}
+.peak{
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+.peak:hover{
+  color:#ec4899;
+}
+.features{
+  margin-top:50px;
+}
+.p1-home{
+  font-size: 23px;
+}
+.fancy-points{
+  margin-left:10px;
+  margin-top:20px;
+  margin-bottom: 20px;
+  list-style-type:none;
 }

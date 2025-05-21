@@ -26,6 +26,13 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #ec4899;
+  transition: transform 0.3s ease;
+}
+.name:hover{
+  transform: scale(1.1);
+}
+.name:active{
+  transform: scale(0.9);
 }
 
 .nav-links {
@@ -34,6 +41,8 @@
   gap: 24px;
   margin: 0;
   padding: 0;
+  align-items: center;
+  
 }
 
 .nav-link {
@@ -41,12 +50,33 @@
   color: white;
   font-weight: 500;
   transition: color 0.3s ease;
+  align-items: center;
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
-
 .nav-link:hover {
   color: #ec4899;
+  transform: scale(1.1);
 }
-
+.button-nav-link{
+  all:unset;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease;
+  align-items: center;
+}
+.button-nav-link:hover{
+  color: #ec4899;
+  transform: scale(1.1);
+}
 .back2home{
   text-decoration: none;
 }
