@@ -56,48 +56,59 @@ function Profile() {
   if (!profile) return <div className="profile-container">Loading...</div>;
 
   return (
-    <div className='profile-container'>
-      <h1>Profile</h1>
+  <div className='profile-container'>
+    <h1>Profile</h1>
 
-      {!editing ? (
-        <div className='profile-box'>
-          <p className='name-prof'><strong>{profile.name}</strong></p>
-          <p><strong>Email:</strong> {profile.email}</p>
-          <p><strong>Role:</strong> {profile.role}</p>
-          <div className='container-pfp'>
-          <p style={{margin: 0}}><strong>Profile Picture:</strong> {
-            profile.profilePicture
-              ? <img src={profile.profilePicture} alt="Profile" style={{ width: 80, height: 80, borderRadius: "50%" }} />
-              : <img src={pic} alt="Profile" style={{ width: 80, height: 80, borderRadius: "50%" }} />
-          }</p>
-          </div>
-          <p> <strong>Joined On: </strong>{new Date(profile.timestamp).toLocaleDateString()}</p>
-          <div className="submit-wrapper">
-            <button onClick={() => setEditing(true)} className='button-lr'>Edit Profile</button>
-          </div>
+    {!editing ? (
+      <div className='profile-box'>
+        <p 
+          className='name-prof' 
+          style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+        >
+          {profile.profilePicture 
+            ? (
+              <img 
+                src={`http://localhost:3000${profile.profilePicture}`} 
+                alt="Profile" 
+                style={{ width: 50, height: 50, borderRadius: "20%",objectFit:"cover" }} 
+              />
+            )
+            : (
+              <img 
+                src={pic} 
+                alt="Profile" 
+                style={{ width: 40, height: 40, borderRadius: "50%" }} 
+              />
+            )
+          }
+          <strong>{profile.name}</strong>
+        </p>
+        <p><strong>Email:</strong> {profile.email}</p>
+        <p><strong>Role:</strong> {profile.role}</p>
+        <p><strong>Joined On:</strong> {new Date(profile.timestamp).toLocaleDateString()}</p>
+        <div className="submit-wrapper">
+          <button onClick={() => setEditing(true)} className='button-lr'>Edit Profile</button>
         </div>
-      ) : (
-        <form onSubmit={handleUpdate} className='profile-form'>
-          <div className='input-group'>
-            <label>Name:</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-          </div>
-          <div className='input-group'>
-            <label>Email:</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-          <div className='input-group'>
-            <label>Profile Picture URL:</label>
-            <input type="text" name="profilePicture" value={formData.profilePicture} onChange={handleChange} />
-          </div>
-          <div className='submit-wrapper'>
-            <button type="submit" className='button-lr'>Save</button>
-            <button type="button" onClick={() => setEditing(false)} className='button-lr'>Cancel</button>
-          </div>
-        </form>
-      )}
-    </div>
-  );
+      </div>
+    ) : (
+      <form onSubmit={handleUpdate} className='profile-form'>
+        <div className='input-group'>
+          <label>Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        </div>
+        <div className='input-group'>
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div className='submit-wrapper'>
+          <button type="submit" className='button-lr'>Save</button>
+          <button type="button" onClick={() => setEditing(false)} className='button-lr'>Cancel</button>
+        </div>
+      </form>
+    )}
+  </div>
+);
+
 }
 
 export default Profile;

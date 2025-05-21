@@ -14,23 +14,35 @@ function Register() {
   const [error,setError] = useState("")
   const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    setError("")
-    try{
-      await api.post('/register',
-      {email,password,name,profilePicture,role},
-      {withCredentials: true});
-      setTimeout(() =>{
-        navigate('/login')
-        toast.success("Register Sucessful!")
-        window.location.reload()
-      },1000)
-    }
-    catch(e){
-      console.log("Error registering:",e);
-    }
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("name", name);
+  formData.append("role", role);
+  formData.append("profilePicture", profilePicture); // this is the image file bruv
+
+  try {
+    await api.post("/register", formData, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data", // important AF
+      },
+    });
+
+    setTimeout(() => {
+      navigate("/login");
+      toast.success("Register Successful!");
+      window.location.reload();
+    }, 1000);
+  } catch (e) {
+    console.log("Error registering:", e);
+    toast.error("Register failed 💔");
+  }
+};
   return (
     <>
     <div className="register-page">
@@ -80,9 +92,9 @@ function Register() {
       <label htmlFor="pp">Profile Picture: </label>
       <input
       id = "pp"
-      type ="pp"
-      value={profilePicture}
-      onChange={(e)=> setProfilePicture(e.target.value)}
+      type ="file"
+      accept="image/*"
+      onChange={(e)=> setProfilePicture(e.target.files[0])}
       ></input>
     </div>
     <div className='submit-wrapper'>
