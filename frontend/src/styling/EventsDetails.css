@@ -1,0 +1,104 @@
+.event-details {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff; /* White background */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: #1f2937;
+}
+
+/* 🎟 Title in TicketGo Pink */
+.event-details h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #ec4899; /* New pink */
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(236, 72, 153, 0.2);
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+}
+
+.event-details h1:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
+}
+
+/* 🎉 Underline Animation */
+.event-details h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 10px auto 0;
+  background-color: #ec4899;
+  border-radius: 2px;
+  animation: grow 0.5s ease-out forwards;
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+/* 🧾 Event Info */
+.event-details p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #374151;
+}
+
+.event-details strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 🎟 Booking Form */
+.booking-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-form label {
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.booking-form input {
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-align: center;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.booking-form button {
+  background-color: #ec4899;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.booking-form button:hover {
+  background-color: #be2e74;
+  transform: scale(1.05);
+}
