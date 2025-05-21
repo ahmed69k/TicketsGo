@@ -31,6 +31,9 @@
 .name:hover{
   transform: scale(1.1);
 }
+.name:active{
+  transform: scale(0.9);
+}
 
 .nav-links {
   list-style: none;

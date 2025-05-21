@@ -48,8 +48,14 @@
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s,transform 0.3s ease;
   margin-right: 10px;
+}
+
+.approve-btn:hover,
+.reject-btn:hover,
+.delete-btn:hover{
+  transform: scale(1.1);
 }
 
 .approve-btn {

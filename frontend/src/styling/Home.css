@@ -21,15 +21,15 @@
     color 0.3s,
     transform 0.3s;
 }
-button:hover {
+.button-lr:hover {
   color: white;
   transform: scale(1.1);
 }
-button:active{
+.button-lr:active{
   transform: scale(0.9);
 }
-button:focus,
-button:focus-visible {
+.button-lr:focus,
+.button-lr:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
