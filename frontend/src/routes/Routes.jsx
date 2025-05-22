@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
@@ -12,6 +12,7 @@ import AdminUsersPage from "../pages/AdminUsersPage.jsx";
 import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
+import EventDetails from "../pages/EventsDetails.jsx"; // ✅ Add this import
 
 function AppRoutes() {
   return (
@@ -46,10 +47,12 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path= '/peak' element={<Peaky />}/>
+        <Route path="/peak" element={<Peaky />} />
+
+        
+        <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
     </>
   );

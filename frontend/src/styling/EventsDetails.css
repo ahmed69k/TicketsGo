@@ -9,8 +9,6 @@
   text-align: center;
   color: #1f2937;
 }
-
-/* 🎟 Title in TicketGo Pink */
 .event-details-in h1 {
   font-size: 36px;
   margin-bottom: 30px;
@@ -47,14 +45,11 @@
     opacity: 1;
   }
 }
-
-/* 🧾 Event Info */
 .event-details-in p {
   font-size: 18px;
   margin: 10px 0;
   color: #374151;
 }
-
 .event-details-in strong {
   font-weight: 600;
   color: #111827;
