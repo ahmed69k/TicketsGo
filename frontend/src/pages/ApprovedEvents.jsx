@@ -45,7 +45,7 @@ function ApprovedEvents() {
                         <h2>{event.title}</h2>
                         <p><strong>Date: </strong> {new Date(event.date).toLocaleString()}</p>
                         <p><strong>Location: </strong> {event.location}</p>
-                        <p><strong>Ticket Price: </strong>${event.ticketPrice}</p>
+                        <p><strong>Ticket Price: </strong>{event.ticketPrice} EGP</p>
                         <button className="button-lr">View & Book</button>
                     </div>
                 ))}
