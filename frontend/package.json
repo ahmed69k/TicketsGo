@@ -19,7 +19,6 @@
     "nodemailer": "^7.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^7.6.0",
     "react-toastify": "^11.0.5"
   },
