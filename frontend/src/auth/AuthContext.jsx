@@ -65,7 +65,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Show a loading screen while checking login
-  if (loading) return <div>Loading...</div>;
+  if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+      </div>
+    )
+  }
 
   return (
     <AuthContext.Provider value={{ user, isLoggedIn, login, logout, loading }}>

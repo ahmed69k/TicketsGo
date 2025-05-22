@@ -4,9 +4,31 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 
-function AllEvents() {
-  const [events, setEvents] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+function AllEvents(){
+    const [events,setEvents] = useState(null)
+    const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(true)
+    
+    useEffect(()=>{
+        const fetchEvents = async() =>{
+            try{
+                const res = await api.get('/events/all')
+                setEvents(res.data);
+                setLoading(false);
+            }
+            catch(e){
+                console.log("Error fetching events:",e)
+            }
+        }
+        fetchEvents();
+    },[])
+          if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    )
+  }
 
   useEffect(() => {
     const fetchEvents = async () => {

@@ -62,51 +62,72 @@ const userController = {
     },
 
     login: async (req, res) => {
-        try {
-          const { email, password } = req.body;
+      try {
+        const { email, password, devMode } = req.body;
 
-          const user = await userModel.findOne({ email });
-          if (!user) {
-            return res.status(404).json({ message: "User not found!" });
-          }
-
-          const passwordMatch = await bcrypt.compare(password, user.password);
-          if (!passwordMatch) {
-            return res.status(401).json({ message: "Invalid password!" });
-          }
-
-          // 🧠 Generate OTP
-          const otp = Math.floor(100000 + Math.random() * 900000).toString();
-          const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // expires in 10 min
-
-          // 💾 Save to user doc
-          user.otpCode = otp;
-          user.otpExpiresAt = otpExpires;
-          await user.save();
-
-          // 📬 Send via email
-          await transporter.sendMail({
-            from: `"SEProject" <${process.env.EMAIL_USER}>`,
-            to: user.email,
-            subject: "Your Multi-Factor Authentication Code",
-            html: `
-              <h3>Multi-Factor Authentication</h3>
-              <p>Your code is: <strong style="font-size: 24px;">${otp}</strong></p>
-              <p>It expires in 10 minutes.</p>
-            `,
-          });
-
-          return res.status(200).json({
-            mfaRequired: true,
-            message: "OTP sent to your email. Please verify to complete login.",
-            userId: user._id, // 👈 you'll need this on frontend to call verify
-          });
-
-        } catch (error) {
-          console.error("💀 Login Error:", error);
-          return res.status(500).json({ message: "Server Error!" });
+        const user = await userModel.findOne({ email });
+        if (!user) {
+          return res.status(404).json({ message: "User not found!" });
         }
-      },
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+          return res.status(401).json({ message: "Invalid password!" });
+        }
+
+        // 🔓 Dev mode: skip OTP
+        if (devMode) {
+      const currentDateTime = new Date();
+      const expiresIn = new Date(+currentDateTime + 1800000); // 30 minutes cookie expiry
+      const token = jwt.sign(
+        { user: { userId: user._id, role: user.role } },
+        secretKey,
+        {
+          expiresIn: 3 * 60 * 60, // 3 hours token expiry
+        }
+      );
+
+      return res
+        .cookie("token", token, {
+          expires: expiresIn,
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .status(200)
+        .json({ message: "Dev Mode Login Successful", user, token });
+        }
+
+        // 🔐 Normal login path: generate + send OTP
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpires = new Date(Date.now() + 10 * 60 * 1000);
+
+        user.otpCode = otp;
+        user.otpExpiresAt = otpExpires;
+        await user.save();
+
+        await transporter.sendMail({
+          from: `"SEProject" <${process.env.EMAIL_USER}>`,
+          to: user.email,
+          subject: "Your Multi-Factor Authentication Code",
+          html: `
+            <h3>Multi-Factor Authentication</h3>
+            <p>Your code is: <strong style="font-size: 24px;">${otp}</strong></p>
+            <p>It expires in 10 minutes.</p>
+          `,
+        });
+
+        return res.status(200).json({
+          mfaRequired: true,
+          message: "OTP sent to your email. Please verify to complete login.",
+          userId: user._id,
+        });
+      } catch (error) {
+        console.error("💀 Login Error:", error);
+        return res.status(500).json({ message: "Server Error!" });
+      }
+    },
+
       verifyOTP: async (req, res) => {
         try {
           const { userId, otp } = req.body;
