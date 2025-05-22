@@ -29,7 +29,7 @@ function AppRoutes() {
         <Route
           path="/approvedEvents"
           element={
-            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]}>
+            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]} allowPublic = {true}>
               <ApprovedEvents />
             </ProtectedRoute>
           }
@@ -52,9 +52,6 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
-
-        {/* NEW ROUTE for event organizers to create an event */}
         <Route
           path="/create-event"
           element={
@@ -63,8 +60,6 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
-        {/* ✅ NEW ROUTE to view own events */}
         <Route
           path="/my-events"
           element={

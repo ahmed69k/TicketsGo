@@ -29,8 +29,8 @@ app.use(cors({
 app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1/', userRouter);
-app.use(authenticationMiddleware);
 app.use("/api/v1/events", eventRouter);
+app.use(authenticationMiddleware);
 app.use("/api/v1/bookings", bookingRouter);
 
 const db_name = process.env.DB_NAME;
