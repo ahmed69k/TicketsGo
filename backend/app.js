@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: `${process.env.FRONTEND_LINK_VERCEL}`,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
