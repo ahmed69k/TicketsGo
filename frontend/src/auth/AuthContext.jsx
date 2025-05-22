@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import {TailSpin} from 'react-loader-spinner'
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -64,8 +65,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Show a loading screen while checking login
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (
+  <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+    <TailSpin height={50} width={50} color="#3498db" ariaLabel="loading-spinner" />
+  </div>
+  );
 
   return (
     <AuthContext.Provider value={{ user, isLoggedIn, login, logout, loading }}>
