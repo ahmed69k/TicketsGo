@@ -1,76 +1,111 @@
-import '../styling/ApprovedEvents.css'
-import { useAuth } from '../auth/AuthContext'
-import { useEffect, useState } from 'react'
-import api from '../services/api'
-import '../styling/AllEvents.css'
-import {toast} from 'react-toastify';
+import '../styling/ApprovedEvents.css';
+import '../styling/AllEvents.css';
+import { useEffect, useState } from 'react';
+import api from '../services/api';
+import { toast } from 'react-toastify';
 
-function AllEvents(){
-    const [events,setEvents] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("");
-    
-    useEffect(()=>{
-        const fetchEvents = async() =>{
-            try{
-                const res = await api.get('/events/all')
-                setEvents(res.data);
-            }
-            catch(e){
-                console.log("Error fetching events:",e)
-            }
-        }
-        fetchEvents();
-    },[])
+function AllEvents() {
+  const [events, setEvents] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-    if(!events){
-        return <h1 className="no-event">No events available!</h1>
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await api.get('/events/all');
+        setEvents(res.data);
+      } catch (e) {
+        console.error("Error fetching events:", e);
+        toast.error("Failed to load events ❌");
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  if (!events) {
+    return <h1 className="no-event">No events available!</h1>;
+  }
+
+  const handleApprove = async (eventId) => {
+    try {
+      await api.put(`/events/${eventId}/status`, { Status: "Approved" });
+      setEvents((prev) =>
+        prev.map((event) =>
+          event._id === eventId ? { ...event, Status: "Approved" } : event
+        )
+      );
+      toast.success("Event approved! ✅");
+    } catch (e) {
+      console.error("Error approving event:", e);
+      toast.error("Failed to approve event ❌");
     }
+  };
 
+  const handleReject = async (eventId) => {
+    try {
+      await api.put(`/events/${eventId}/status`, { Status: "Declined" });
+      setEvents((prev) =>
+        prev.map((event) =>
+          event._id === eventId ? { ...event, Status: "Declined" } : event
+        )
+      );
+      toast.info("Event rejected.");
+    } catch (e) {
+      console.error("Error rejecting event:", e);
+      toast.error("Failed to reject event ❌");
+    }
+  };
 
-    const filteredEvents = events.filter((event) =>
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  const handleDelete = async (eventId) => {
+    try {
+      await api.delete(`/events/${eventId}`);
+      setEvents((prev) => prev.filter((event) => event._id !== eventId));
+      toast.success("Event deleted! 🗑️");
+    } catch (e) {
+      console.error("Error deleting event:", e);
+      toast.error("Failed to delete event ❌");
+    }
+  };
 
+  const filteredEvents = events.filter((event) =>
+    event.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-    console.log(events)
-    return(
-        <div className="events-container">
-            <h1 className='title-events-all'>All Events</h1>
-            <input
-                type="text"
-                placeholder="Search events..."
-                className="search-input"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-        <div className="events-container">
-            {filteredEvents.map((event, index) => (
-                <div className="event-box" key={index}>
-                    <h2>{event.title}</h2>
-                    <p><strong>Date: </strong> {event.date}</p>
-                    <p><strong>Location: </strong> {event.location}</p>
-                    <p><strong>Description: </strong> {event.description}</p>
-                    <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
-                    <p><strong>Remaining tickets: </strong>{event.remainingTickets}</p>
-                    <div className='button-group'>
-                    {event.Status === "Pending" ? (
-                        <>
-                        <button className='approve-btn' onClick={() => toast.success('Event approved!')}> Approve</button>
-                        <button className='reject-btn'>Reject</button>
-                        </>
-                        
-                    ) : null}
-                    <button className='delete-btn'> Delete</button>
-                    </div>
-                
-                </div>
-                
-                
-            ))}
+  return (
+    <div className="events-container">
+      <h1 className="title-events-all">All Events</h1>
+      <input
+        type="text"
+        placeholder="Search events..."
+        className="search-input"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      <div className="events-container">
+        {filteredEvents.map((event, index) => (
+          <div className="event-box" key={index}>
+            <h2>{event.title}</h2>
+            <p><strong>Date: </strong>{event.date}</p>
+            <p><strong>Location: </strong>{event.location}</p>
+            <p><strong>Description: </strong>{event.description}</p>
+            <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
+            <p><strong>Remaining tickets: </strong>{event.remainingTickets}</p>
+            <p><strong>Status: </strong>{event.Status}</p>
+
+            <div className="button-group">
+              {event.Status === "Pending" && (
+                <>
+                  <button className="approve-btn" onClick={() => handleApprove(event._id)}>Approve</button>
+                  <button className="reject-btn" onClick={() => handleReject(event._id)}>Reject</button>
+                </>
+              )}
+              <button className="delete-btn" onClick={() => handleDelete(event._id)}>Delete</button>
             </div>
-        </div>
-    )
-
-
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default AllEvents
+export default AllEvents;

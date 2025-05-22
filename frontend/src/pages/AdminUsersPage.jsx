@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import UserRow from "../components/UserRow.jsx";
 import "../styling/AdminUsersPage.css";
 
 function AdminUsersPage() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -19,7 +21,7 @@ function AdminUsersPage() {
   }, []);
 
   const handleUpdateRole = (user) => {
-    
+    navigate(`/admin/users/${user._id}/edit-role`);
   };
 
   const handleDelete = async (id) => {
