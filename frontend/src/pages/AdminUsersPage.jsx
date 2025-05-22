@@ -4,6 +4,7 @@ import api from "../services/api";
 import UserRow from "../components/UserRow.jsx";
 import "../styling/AdminUsersPage.css";
 
+
 function AdminUsersPage() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
