@@ -10,7 +10,6 @@ function UserBookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        // FIXED: Correct API endpoint
         const res = await api.get("/users/bookings");
         setBookings(res.data);
       } catch (error) {
