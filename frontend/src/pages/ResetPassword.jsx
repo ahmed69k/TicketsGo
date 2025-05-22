@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from "../services/api";
 
 function ResetPassword() {
   const [searchParams] = useSearchParams();

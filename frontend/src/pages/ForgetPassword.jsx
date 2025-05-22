@@ -1,8 +1,7 @@
-// src/pages/ForgetPassword.jsx
-
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from "../services/api";
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");
