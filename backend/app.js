@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://se-project-kappa.vercel.app",
+    origin: "https://ticketsgo.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
