@@ -56,7 +56,7 @@ function EventDetails() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading HIIII test...</p>;
   if (!event) return <p>Event not found</p>;
 
   const remaining = event.remainingTickets;

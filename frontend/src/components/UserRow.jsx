@@ -7,7 +7,7 @@ function UserRow({ user, onUpdateRole, onDelete }) {
     <div className="user-box">
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <img
-          src={user.profilePicture ? `${import.meta.env.BACKEND_LINK_RAILWAY}${user.profilePicture}` : pic}
+          src={user.profilePicture ? `${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${user.profilePicture}` : pic}
           alt={`${user.name} profile`}
           style={{
             width: 50,
