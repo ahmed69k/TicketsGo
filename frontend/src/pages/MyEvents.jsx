@@ -7,7 +7,7 @@ function MyEvents() {
   useEffect(() => {
     const fetchMyEvents = async () => {
       try {
-        const res = await api.get("/events/mine");
+        const res = await api.get("/users/events");
         setEvents(res.data);
       } catch (err) {
         console.error("Failed to fetch events:", err);

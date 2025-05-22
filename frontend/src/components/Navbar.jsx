@@ -23,7 +23,7 @@ const Navbar = () => {
               </>
             ) : user.role === "Organizer" ? (
               <>
-                <li><Link to="/approvedEvents" className="nav-link">My Events</Link></li>
+                <li><Link to="/my-events" className="nav-link">My Events</Link></li>
                 <li><Link to="/create-event" className="nav-link">Create Event</Link></li> 
                 <li><Link to="/profile" className="nav-link">Profile</Link></li>
                 <li><button className="button-nav-link" onClick={logout}>Logout</button></li>
