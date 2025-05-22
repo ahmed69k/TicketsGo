@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styling/Login.css";
 import { toast } from "react-toastify";
-import api from "../services/api.jsx";
+import {api} from '../services/api.jsx'
 
 axios.defaults.withCredentials = true;
 
@@ -38,7 +38,7 @@ function Login() {
       }
     } catch (e) {
       setError(e.response?.data?.message || "Invalid email or password.");
-      console.log("Login Error", e);
+      console.log("Login Error!!!!", e);
     }
   };
 
