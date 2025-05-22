@@ -33,7 +33,7 @@ function AdminUsersPage() {
 
   return (
     <div className="users-page">
-      <h1>Users List:</h1>
+      <h1>Users List</h1>
       {users.length === 0 ? (
         <p className="no-event">No users found!</p>
       ) : (

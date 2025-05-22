@@ -67,7 +67,7 @@ function EventDetails() {
       : `${remaining} tickets available`;
 
   return (
-    <div className="event-details">
+    <div className="event-details-in">
       <h1>{event.title}</h1>
       <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
       <p><strong>Location:</strong> {event.location}</p>
@@ -89,7 +89,7 @@ function EventDetails() {
             onChange={(e) => setTicketsToBook(Number(e.target.value))}
             required
           />
-          <button type="submit">Book Now</button>
+          <button className="button-lr"type="submit">Book Now</button>
         </form>
       )}
 
