@@ -22,7 +22,7 @@ function Login() {
 
     try {
       const res = await api.post(
-        "/api/v1/login",
+        "/login",
         { email, password },
         { withCredentials: true }
       );
@@ -48,7 +48,7 @@ function Login() {
 
     try {
       const res = await api.post(
-        "/api/v1/verify-otp",
+        "/verify-otp",
         { userId, otp },
         { withCredentials: true }
       );
