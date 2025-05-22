@@ -31,6 +31,9 @@ router.post("/register",upload.single("profilePicture"), userController.register
 // * login $
 router.post("/login", userController.login);
 
+// *MFA
+router.post('/verify-otp',userController.verifyOTP)
+
 // * logout
 router.post('/logout',userController.logout);
 
