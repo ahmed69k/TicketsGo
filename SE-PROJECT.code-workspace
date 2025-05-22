@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "SE-PROJECT",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
