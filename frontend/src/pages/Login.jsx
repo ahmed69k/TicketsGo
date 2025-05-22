@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styling/Login.css";
 import { toast } from "react-toastify";
-import api from "../services/api";
+import api from "../services/api.jsx";
 
 axios.defaults.withCredentials = true;
 
