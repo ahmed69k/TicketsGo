@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
@@ -9,11 +9,13 @@ import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import AllEvents from "../pages/AllEvents.jsx";
 import Unauthorized from "../pages/Unauthorized.jsx";
 import AdminUsersPage from "../pages/AdminUsersPage.jsx";
-import ForgetPassword from "../pages/Forgetpassword.jsx";
+import ForgetPassword from "../pages/ForgetPassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
 import CreateEvent from "../pages/CreateEvent.jsx";
-import MyEvents from "../pages/MyEvents.jsx"; // ✅ Added this import
+import MyEvents from "../pages/MyEvents.jsx"; 
+import EventDetails from "../pages/EventsDetails.jsx";
+import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
 
 function AppRoutes() {
   return (
@@ -51,6 +53,7 @@ function AppRoutes() {
           }
         />
 
+
         {/* NEW ROUTE for event organizers to create an event */}
         <Route
           path="/create-event"
@@ -75,6 +78,18 @@ function AppRoutes() {
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path='/peak' element={<Peaky />} />
+        <Route
+          path="/admin/users/:id/edit-role"
+          element={
+            <ProtectedRoute allowedRoles={"System Admin"}>
+              <UpdateUserRolePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/forgot-password" element={<ForgetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/peak" element={<Peaky />} />
+        <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
     </>
   );

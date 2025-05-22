@@ -9,8 +9,29 @@
 }
 
 .profile-container h1{
+  font-size: 40px;
   color: #ec4899;
-  text-decoration: underline;
+  margin-bottom:20px;
+}
+.profile-container h1::after{
+    content: "";
+  display: block;
+  width: 130px;           /* Set your desired width */
+  height: 3px;
+  margin: -5px auto 0;
+  background-color: #ec4899;
+  border-radius: 2px;
+  animation: grow 0.5s ease-out forwards;
+}
+@keyframes grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 130px;         /* Match the width above */
+    opacity: 1;
+  }
 }
 
 .profile-container p {

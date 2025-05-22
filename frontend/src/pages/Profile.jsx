@@ -6,6 +6,7 @@ import pic from '../assets/defaultpfp.jpg'
 
 function Profile() {
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,6 +25,7 @@ function Profile() {
           email: res.data.email || '',
           profilePicture: res.data.profilePicture || ''
         });
+        setLoading(false);
       } catch (e) {
         setError("Error fetching profile");
         console.log("Error fetching profile:", e);
@@ -51,6 +53,13 @@ function Profile() {
       console.error("Update error:", err);
     }
   };
+    if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    )
+  }
 
   if (error) return <div className="profile-container">{error}</div>;
   if (!profile) return <div className="profile-container">Loading...</div>;
@@ -68,7 +77,7 @@ function Profile() {
           {profile.profilePicture 
             ? (
               <img 
-                src={`http://localhost:3000${profile.profilePicture}`} 
+                src={`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${profile.profilePicture}`} 
                 alt="Profile" 
                 style={{ width: 50, height: 50, borderRadius: "20%",objectFit:"cover" }} 
               />
