@@ -15,7 +15,6 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Step 1: Handle initial login request
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -126,7 +125,7 @@ function Login() {
         // MFA OTP input form
         <form onSubmit={handleOtpSubmit}>
           <p>
-            Enter the OTP sent to <strong>{email}</strong> 🥀💔
+            Enter the OTP sent to <strong>{email}</strong>!
           </p>
           <div className="input-group">
             <label htmlFor="otp">OTP Code:</label>
@@ -151,7 +150,6 @@ function Login() {
               type="button"
               className="button-lr"
               onClick={() => {
-                // Reset MFA and go back to login
                 setMfaRequired(false);
                 setOtp("");
                 setUserId(null);
