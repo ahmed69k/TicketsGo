@@ -12,7 +12,7 @@ function ForgetPassword() {
     console.log("Trying to reset password for:", email); // ✅ logs current email
 
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/forgot-password", {
+      const response = await axios.get(`${import.meta.env.BACKEND_LINK_RAILWAY}/api/v1/forgot-password`, {
         params: { email },
         withCredentials: true,
       });

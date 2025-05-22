@@ -20,8 +20,8 @@ function Login() {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/login",
+      const res = await api.post(
+        "/api/v1/login",
         { email, password },
         { withCredentials: true }
       );
@@ -46,8 +46,8 @@ function Login() {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/verify-otp",
+      const res = await api.post(
+        "/api/v1/verify-otp",
         { userId, otp },
         { withCredentials: true }
       );

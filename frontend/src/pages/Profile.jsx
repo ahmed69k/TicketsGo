@@ -68,7 +68,7 @@ function Profile() {
           {profile.profilePicture 
             ? (
               <img 
-                src={`http://localhost:3000${profile.profilePicture}`} 
+                src={`${import.meta.env.BACKEND_LINK_RAILWAY}${profile.profilePicture}`} 
                 alt="Profile" 
                 style={{ width: 50, height: 50, borderRadius: "20%",objectFit:"cover" }} 
               />
