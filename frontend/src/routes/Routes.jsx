@@ -12,6 +12,7 @@ import AdminUsersPage from "../pages/AdminUsersPage.jsx";
 import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
+import CreateEvent from "../pages/CreateEvent.jsx";
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        
         <Route
           path="/approvedEvents"
           element={
@@ -29,6 +31,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/allEvents"
           element={
@@ -37,7 +40,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+
         <Route
           path="/users"
           element={
@@ -47,9 +50,20 @@ function AppRoutes() {
           }
         />
 
+        {/* NEW ROUTE for event organizers to create an event */}
+        <Route
+          path="/create-event"
+          element={
+            <ProtectedRoute allowedRoles={["Organizer"]}>
+              <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path= '/peak' element={<Peaky />}/>
+        <Route path='/peak' element={<Peaky />} />
       </Routes>
     </>
   );
