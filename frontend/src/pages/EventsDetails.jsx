@@ -59,7 +59,7 @@ function EventDetails() {
     if (loading){
     return(
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
       </div>
     )
   }
