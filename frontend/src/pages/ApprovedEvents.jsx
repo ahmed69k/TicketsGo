@@ -7,12 +7,14 @@ function ApprovedEvents() {
     const [events, setEvents] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
                 const res = await api.get('/events/');
                 setEvents(res.data);
+                setLoading(false)
             } catch (e) {
                 console.log("Error fetching events:", e);
             }
@@ -23,7 +25,13 @@ function ApprovedEvents() {
     const filteredEvents = events?.filter((event) =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
+    if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    )
+  }
     return (
         <div>
             <h1 className="event-title">Available Events</h1>
