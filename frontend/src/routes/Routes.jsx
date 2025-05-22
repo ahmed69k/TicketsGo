@@ -12,7 +12,8 @@ import AdminUsersPage from "../pages/AdminUsersPage.jsx";
 import ForgetPassword from "../pages/ForgetPassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
-import EventDetails from "../pages/EventsDetails.jsx"; // ✅ Add this import
+import EventDetails from "../pages/EventsDetails.jsx";
+import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
 
 function AppRoutes() {
   return (
@@ -47,11 +48,17 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/users/:id/edit-role"
+          element={
+            <ProtectedRoute allowedRoles={"System Admin"}>
+              <UpdateUserRolePage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/peak" element={<Peaky />} />
-
-        
         <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
     </>
