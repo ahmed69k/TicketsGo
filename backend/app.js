@@ -2,9 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const multer = require('multer')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 const userRouter = require("./Routers/UserRouter");
 const eventRouter = require("./Routers/EventRouter");
@@ -21,6 +23,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
+app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1/', userRouter);
 app.use(authenticationMiddleware);

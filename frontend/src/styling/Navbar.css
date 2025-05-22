@@ -26,6 +26,13 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #ec4899;
+  transition: transform 0.3s ease;
+}
+.name:hover{
+  transform: scale(1.1);
+}
+.name:active{
+  transform: scale(0.9);
 }
 
 .nav-links {
@@ -35,6 +42,7 @@
   margin: 0;
   padding: 0;
   align-items: center;
+  
 }
 
 .nav-link {
@@ -43,6 +51,12 @@
   font-weight: 500;
   transition: color 0.3s ease;
   align-items: center;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.nav-link:hover {
+  color: #ec4899;
+  transform: scale(1.1);
 }
 .button-nav-link{
   all:unset;
@@ -54,16 +68,15 @@
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: 
+    color 0.3s ease,
+    transform 0.3s ease;
+  align-items: center;
 }
 .button-nav-link:hover{
   color: #ec4899;
+  transform: scale(1.1);
 }
-
-.nav-link:hover {
-  color: #ec4899;
-}
-
 .back2home{
   text-decoration: none;
 }

@@ -3,14 +3,39 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 40px;
+  padding: 0px;
   text-align: center;
-  margin-top: 10px;
+  
+}
+
+.profile-container h1{
+  font-size: 40px;
+  color: #ec4899;
+  margin-bottom:20px;
+}
+.profile-container h1::after{
+    content: "";
+  display: block;
+  width: 130px;           /* Set your desired width */
+  height: 3px;
+  margin: -5px auto 0;
+  background-color: #ec4899;
+  border-radius: 2px;
+  animation: grow 0.5s ease-out forwards;
+}
+@keyframes grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 130px;         /* Match the width above */
+    opacity: 1;
+  }
 }
 
 .profile-container p {
-  margin-bottom: 5px; /* More space between lines */
+  margin-bottom: 10px; /* More space between lines */
 }
 
 /* Form Styling */
@@ -48,13 +73,38 @@
   justify-content: center;
   margin-top: 20px;
 }
+.name-prof{
+  font-size: 50px;
+  margin-bottom: 20px;
+  color:#ec4899;
 
-.button-lr {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
+}
+.profile-box{
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem ;
+  width: 30%;                /* 🔥 Wider for buttons */
+  min-width: 250px;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  margin-bottom: 2rem;
+  margin-top:1rem;
+}
+.profile-box:hover{
+  box-shadow: 0 4px 24px rgba(236, 72, 153, 0.15);
+}
+.container-pfp {
+  display: flex;
+  align-items: flex-start; /* aligns items to the top */
+}
+
+.container-pfp p {
+  margin: 0;
+  padding: 0;
+  line-height: 80px; /* vertically aligns text with image if needed */
 }

@@ -5,6 +5,16 @@ const mongoose = require("mongoose");
 const authorizationMiddleware = require('../Middleware/AuthorizationMiddleware');
 const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware');
 const bookingController = require("../Controllers/BookingController");
+const multer = require("multer")
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null, "uploads/");
+    },
+    filename: function(req,file,cb){
+        cb(null,Date.now() + '-' + file.originalname)
+    }
+})
+const upload = multer({storage:storage})
 
 
 const router = express.Router();
@@ -16,10 +26,13 @@ router.get("/forgot-password", userController.forgetPassword);
 router.put("/reset-password", userController.resetPassword);
 
 // * register $
-router.post("/register", userController.register);
+router.post("/register",upload.single("profilePicture"), userController.register);
 
 // * login $
 router.post("/login", userController.login);
+
+// *MFA
+router.post('/verify-otp',userController.verifyOTP)
 
 // * logout
 router.post('/logout',userController.logout);

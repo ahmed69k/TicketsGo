@@ -1,0 +1,85 @@
+.event-details-in {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff; /* White background */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: #1f2937;
+}
+.event-details-in:hover{
+  box-shadow: 0 4px 24px rgba(236, 72, 153, 0.15);
+}
+.event-details-in h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #ec4899; /* New pink */
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(236, 72, 153, 0.2);
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+
+/* 🎉 Underline Animation */
+.event-details-in h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 3px;
+  width: 100%;
+  background-color: #ec4899;
+  border-radius: 2px;
+  animation: grow 0.5s ease-out forwards;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+.event-details-in p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #374151;
+}
+.event-details-in strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* 🎟 Booking Form */
+.booking-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-form label {
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.booking-form input {
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-align: center;
+  background-color: #f9fafb;
+  color: #111827;
+}

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
@@ -9,8 +9,10 @@ import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import AllEvents from "../pages/AllEvents.jsx";
 import Unauthorized from "../pages/Unauthorized.jsx";
 import AdminUsersPage from "../pages/AdminUsersPage.jsx";
-import ForgetPassword from "../pages/Forgetpassword.jsx";
+import ForgetPassword from "../pages/ForgetPassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
+import Peaky from "../pages/peak.jsx";
+import EventDetails from "../pages/EventsDetails.jsx"; // ✅ Add this import
 
 function AppRoutes() {
   return (
@@ -23,7 +25,7 @@ function AppRoutes() {
         <Route
           path="/approvedEvents"
           element={
-            <ProtectedRoute allowedRoles={["Standard User", ""]}>
+            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]}>
               <ApprovedEvents />
             </ProtectedRoute>
           }
@@ -45,9 +47,12 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/peak" element={<Peaky />} />
+
+        
+        <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
     </>
   );

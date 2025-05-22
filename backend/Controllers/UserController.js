@@ -19,7 +19,7 @@ const nodemailer = require("nodemailer");
 
   const sendResetEmail = async (to, resetLink) => {
     await transporter.sendMail({
-      from: `"Your App Name" <${process.env.EMAIL_USER}>`,
+      from: `"TicketsGO" <${process.env.EMAIL_USER}>`,
       to,
       subject: "Reset Your Password",
       html: `
@@ -35,17 +35,18 @@ const userController = {
     
     register: async (req,res) =>{
         try{
-            const{name, email, profilePicture, password, role} = req.body;
+            const{name, email, password, role} = req.body;
             const existingUser = await userModel.findOne({email});
             if(existingUser){
                 return res.status(409).json({message:"This email is already associated to another account!"});
             }
             const hashedPassword = await bcrypt.hash(password, 10);
-
+            const profilePicturePath = req.file ? `/uploads/${req.file.filename}` : "";
+          
             const newUser = new userModel({
                 name,
                 email,
-                profilePicture,
+                profilePicture : profilePicturePath,
                 password: hashedPassword,
                 role
             });
@@ -60,43 +61,94 @@ const userController = {
 
     },
 
-    login: async (req,res) =>{
-        try{
-            const {email,password} = req.body;
-            const user = await userModel.findOne({email});
-            if(!user){
-                return res.status(404).json({message:"User not found!"});
-            }
-            const passwordMatch = await bcrypt.compare(password,user.password);
-            if(!passwordMatch){
-                return res.status(401).json({message:"Invalid password!"});
-            }
+    login: async (req, res) => {
+        try {
+          const { email, password } = req.body;
 
-            const currentDateTime = new Date();
-            const expiresIn = new Date(+currentDateTime + 1800000);
-            const token = jwt.sign(
-                { user: { userId: user._id, role: user.role } },
-                secretKey,
-                {
-                  expiresIn: 3 * 60 * 60,
-                }
-              );
-            return res
-            .cookie("token", token,{
-                expires: expiresIn,
-                httpOnly: true,
-                secure: true,
-                sameSite : "none",
+          const user = await userModel.findOne({ email });
+          if (!user) {
+            return res.status(404).json({ message: "User not found!" });
+          }
+
+          const passwordMatch = await bcrypt.compare(password, user.password);
+          if (!passwordMatch) {
+            return res.status(401).json({ message: "Invalid password!" });
+          }
+
+          // 🧠 Generate OTP
+          const otp = Math.floor(100000 + Math.random() * 900000).toString();
+          const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // expires in 10 min
+
+          // 💾 Save to user doc
+          user.otpCode = otp;
+          user.otpExpiresAt = otpExpires;
+          await user.save();
+
+          // 📬 Send via email
+          await transporter.sendMail({
+            from: `"SEProject" <${process.env.EMAIL_USER}>`,
+            to: user.email,
+            subject: "Your Multi-Factor Authentication Code",
+            html: `
+              <h3>Multi-Factor Authentication</h3>
+              <p>Your code is: <strong style="font-size: 24px;">${otp}</strong></p>
+              <p>It expires in 10 minutes.</p>
+            `,
+          });
+
+          return res.status(200).json({
+            mfaRequired: true,
+            message: "OTP sent to your email. Please verify to complete login.",
+            userId: user._id, // 👈 you'll need this on frontend to call verify
+          });
+
+        } catch (error) {
+          console.error("💀 Login Error:", error);
+          return res.status(500).json({ message: "Server Error!" });
+        }
+      },
+      verifyOTP: async (req, res) => {
+        try {
+          const { userId, otp } = req.body;
+
+          const user = await userModel.findById(userId);
+          if (!user || user.otpCode !== otp) {
+            return res.status(401).json({ message: "Invalid OTP!" });
+          }
+
+          if (user.otpExpiresAt < new Date()) {
+            return res.status(401).json({ message: "OTP expired!" });
+          }
+
+          // ✅ All good — clear the OTP
+          user.otpCode = null;
+          user.otpExpiresAt = null;
+          await user.save();
+
+          // 🪙 Generate final token & set cookie
+          const currentDateTime = new Date();
+          const expiresIn = new Date(+currentDateTime + 1800000); // 30 min cookie
+          const token = jwt.sign(
+            { user: { userId: user._id, role: user.role } },
+            secretKey,
+            { expiresIn: 3 * 60 * 60 }
+          );
+
+          return res
+            .cookie("token", token, {
+              expires: expiresIn,
+              httpOnly: true,
+              secure: true,
+              sameSite: "none",
             })
             .status(200)
-            .json({message: "Login Successful", user, "Token": token});
-        }
-        catch(error){
-            console.log("Error logging in user",error);
-            res.status(500).json({message: "Server Error"});
+            .json({ message: "Login verified!", user, token });
 
+        } catch (err) {
+          console.error("OTP Verification Error", err);
+          return res.status(500).json({ message: "Server Error!" });
         }
-    },
+      },
     logout: async (req, res) => {
         try {
             res.clearCookie("token", {
