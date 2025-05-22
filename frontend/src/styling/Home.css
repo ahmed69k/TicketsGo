@@ -28,9 +28,6 @@
 .button-lr:active{
   transform: scale(0.9);
 }
-.button-lr:focus,
-.button-lr:focus-visible {
-}
 
 .button-container{
   display: flex;
