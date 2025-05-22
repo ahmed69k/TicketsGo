@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.BACKEND_LINK_RAILWAY}/api/v1/users/profile`, {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}/api/v1/users/profile`, {
           withCredentials: true,
         });
         setUser(res.data); // Set authenticated user
