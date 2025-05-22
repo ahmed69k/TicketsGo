@@ -30,7 +30,6 @@
 }
 .button-lr:focus,
 .button-lr:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .button-container{

@@ -34,7 +34,7 @@ function ApprovedEvents(){
     console.log(events)
     return(
         <div>
-            <h1 className="event-title">Available Events:</h1>
+            <h1 className="event-title">Available Events</h1>
             <input
                 type="text"
                 placeholder="Search events..."
