@@ -64,16 +64,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  if (loading) {
-    return (
+  if (loading){
+    return(
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-        <img
-          src="/loader.gif"       // or your external URL
-          alt="Loading..."
-          style={{ width: 80, height: 80 }} // size it how you like
-        />
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
       </div>
-    );
+    )
   }
 
   return (

@@ -6,12 +6,14 @@ import "../styling/AdminUsersPage.css";
 
 function AdminUsersPage() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const res = await api.get("/users");
         setUsers(res.data);
+        setLoading(false)
       } catch (e) {
         console.error("Error fetching users:", e);
       }
@@ -31,6 +33,13 @@ function AdminUsersPage() {
       console.error("Error deleting user:", e);
     }
   };
+    if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+      </div>
+    )
+  }
 
   return (
     <div className="users-page">

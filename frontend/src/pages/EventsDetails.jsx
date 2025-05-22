@@ -56,7 +56,13 @@ function EventDetails() {
     }
   };
 
-  if (loading) return <p>Loading HIIII test...</p>;
+    if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+      </div>
+    )
+  }
   if (!event) return <p>Event not found</p>;
 
   const remaining = event.remainingTickets;

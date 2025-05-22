@@ -8,12 +8,14 @@ import {toast} from 'react-toastify';
 function AllEvents(){
     const [events,setEvents] = useState(null)
     const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(true)
     
     useEffect(()=>{
         const fetchEvents = async() =>{
             try{
                 const res = await api.get('/events/all')
                 setEvents(res.data);
+                setLoading(false)
             }
             catch(e){
                 console.log("Error fetching events:",e)
@@ -21,6 +23,13 @@ function AllEvents(){
         }
         fetchEvents();
     },[])
+      if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+      </div>
+    )
+  }
 
     if(!events){
         return <h1 className="no-event">No events available!</h1>
