@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
         <img
-          src="/frontend/public/loader.gif"       // or your external URL
+          src="/loader.gif"       // or your external URL
           alt="Loading..."
           style={{ width: 80, height: 80 }} // size it how you like
         />
