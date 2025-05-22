@@ -25,7 +25,7 @@ function Profile() {
           email: res.data.email || '',
           profilePicture: res.data.profilePicture || ''
         });
-        setLoading(true)
+        setLoading(false)
       } catch (e) {
         setError("Error fetching profile");
         console.log("Error fetching profile:", e);
