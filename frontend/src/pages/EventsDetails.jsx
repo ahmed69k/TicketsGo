@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useAuth } from "../auth/AuthContext";
 import "../styling/EventsDetails.css";
+import {toast} from 'react-toastify'
 
 function EventDetails() {
   const { id } = useParams();
@@ -47,10 +48,11 @@ function EventDetails() {
         setTicketsToBook(1);
         const updatedEvent = await api.get(`/events/${id}`);
         setEvent(updatedEvent.data);
+        toast.success("Booking Successful!")
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Booking failed");
       console.error("Booking failed:", err);
+      toast.error("Booking Error!")
     }
   };
 
@@ -101,12 +103,6 @@ function EventDetails() {
 
       {remaining === 0 && (
         <p style={{ color: "red", fontWeight: "bold" }}>This event is sold out.</p>
-      )}
-
-      {bookingSuccess && (
-        <p style={{ color: "green", marginTop: "1rem" }}>
-          Booking successful!
-        </p>
       )}
     </div>
   );
