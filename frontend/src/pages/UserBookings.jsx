@@ -1,4 +1,4 @@
-import "../styling/AllEvents.css"; // reuse styling
+import "../styling/AllEvents.css"; 
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ function UserBookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await api.get("/users/bookings");
+        const res = await api.get("/users/bookings"); 
         setBookings(res.data);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
@@ -47,20 +47,39 @@ function UserBookings() {
   }
 
   return (
-    <div className="events-container">
+    <div className="events-container user-bookings-padding" style={{ paddingTop: 120 }}>
       <h1 className="title-events-all">My Bookings</h1>
       <div className="events-container">
-        {bookings.map((booking, index) => (
-          <div className="event-box" key={index}>
-            <h2>{booking.eventName || "Event Name Unavailable"}</h2>
-            <p><strong>Date:</strong> {new Date(booking.date).toLocaleDateString()}</p>
-            <p><strong>Seats:</strong> {booking.seats?.join(", ") || "N/A"}</p>
-            <p><strong>Status:</strong> {booking.status || "Active"}</p>
-            <button className="delete-btn" onClick={() => handleCancel(booking._id)}>
-              Cancel Booking
-            </button>
-          </div>
-        ))}
+        {bookings.map((booking) => {
+          const ticket = booking.bookedTicket[0]; 
+
+          return (
+            <div className="event-box" key={booking._id}>
+              <h2>{ticket?.bookingEvent?.title || "Event Name Unavailable"}</h2>
+              <p>
+                <strong>Date:</strong>{" "}
+                {ticket?.bookingEvent?.date
+                  ? new Date(ticket.bookingEvent.date).toLocaleDateString()
+                  : "N/A"}
+              </p>
+              <p>
+                <strong>Location:</strong> {ticket?.bookingEvent?.location || "N/A"}
+              </p>
+              <p>
+                <strong>Number of Tickets:</strong> {booking.numOfTickets}
+              </p>
+              <p>
+                <strong>Total Price:</strong> ${booking.totalPrice?.toFixed(2) || "N/A"}
+              </p>
+              <p>
+                <strong>Status:</strong> {booking.status || "Active"}
+              </p>
+              <button className="delete-btn" onClick={() => handleCancel(booking._id)}>
+                Cancel Booking
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
