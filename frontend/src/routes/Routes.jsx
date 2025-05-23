@@ -16,6 +16,7 @@ import CreateEvent from "../pages/CreateEvent.jsx";
 import MyEvents from "../pages/MyEvents.jsx"; 
 import EventDetails from "../pages/EventsDetails.jsx";
 import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
+import UserBookings from "../pages/UserBookings";
 
 function AppRoutes() {
   return (
@@ -85,6 +86,14 @@ function AppRoutes() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/peak" element={<Peaky />} />
         <Route path="/events/:id" element={<EventDetails />} />
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["Standard User"]}>
+              <UserBookings />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
