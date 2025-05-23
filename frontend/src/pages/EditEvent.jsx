@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import '../styling/CreateEvent.css'
 
 function EditEvent() {
   const { id } = useParams();
@@ -44,19 +45,112 @@ function EditEvent() {
   };
 
   return (
-    <div>
-      <h2>Edit Event</h2>
+    <div className="create-event-page">
+      <h1>Edit Event</h1>
       <form onSubmit={handleSubmit}>
-        <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
-        <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" />
-        <input name="category" value={formData.category} onChange={handleChange} placeholder="Category" />
-        <input name="date" value={formData.date} onChange={handleChange} type="date" />
-        <input name="location" value={formData.location} onChange={handleChange} placeholder="Location" />
-        <input name="image" value={formData.image} onChange={handleChange} placeholder="Image URL" />
-        <input name="ticketPrice" value={formData.ticketPrice} onChange={handleChange} type="number" placeholder="Price" />
-        <input name="totalTickets" value={formData.totalTickets} onChange={handleChange} type="number" placeholder="Total Tickets" />
-        <input name="remainingTickets" value={formData.remainingTickets} onChange={handleChange} type="number" placeholder="Remaining Tickets" />
-        <button type="submit">Update Event</button>
+        <div className="input-group">
+          <label htmlFor="title">Event Name:</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="category">Category:</label>
+          <input
+            id="category"
+            name="category"
+            type="text"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="date">Date & Time:</label>
+          <input
+            id="date"
+            name="date"
+            type="datetime-local"
+            value={formData.date}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="location">Location:</label>
+          <input
+            id="location"
+            name="location"
+            type="text"
+            value={formData.location}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="image">Image URL:</label>
+          <input
+            id="image"
+            name="image"
+            type="text"
+            value={formData.image}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="ticketPrice">Ticket Price:</label>
+          <input
+            id="ticketPrice"
+            name="ticketPrice"
+            type="number"
+            min="0"
+            value={formData.ticketPrice}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="totalTickets">Total Tickets:</label>
+          <input
+            id="totalTickets"
+            name="totalTickets"
+            type="number"
+            min="1"
+            value={formData.totalTickets}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="remainingTickets">Remaining Tickets:</label>
+          <input
+            id="remainingTickets"
+            name="remainingTickets"
+            type="number"
+            min="0"
+            value={formData.remainingTickets}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="submit-wrapper">
+          <button type="submit">Update Event</button>
+        </div>
       </form>
     </div>
   );

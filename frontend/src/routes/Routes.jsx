@@ -52,7 +52,6 @@ function AppRoutes() {
           }
         />
 
-        {/* NEW ROUTE for event organizers to create an event */}
         <Route
           path="/create-event"
           element={
