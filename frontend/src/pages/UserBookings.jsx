@@ -14,7 +14,7 @@ function UserBookings() {
         setBookings(res.data);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
-        toast.error("Failed to load bookings ❌");
+        toast.error("Failed to load bookings!");
       } finally {
         setLoading(false);
       }
@@ -27,10 +27,10 @@ function UserBookings() {
     try {
       await api.delete(`/bookings/${bookingId}`);
       setBookings((prev) => prev.filter((b) => b._id !== bookingId));
-      toast.success("Booking cancelled 🗑️");
+      toast.success("Booking cancelled!");
     } catch (error) {
       console.error("Error cancelling booking:", error);
-      toast.error("Failed to cancel booking ❌");
+      toast.error("Failed to cancel booking");
     }
   };
 
