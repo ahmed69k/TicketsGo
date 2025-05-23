@@ -21,8 +21,7 @@ function ApprovedEvents() {
         };
         fetchEvents();
     }, []);
-    if(!events)return <h1 className="no-event">No events available!</h1>;
-    
+    if(!events) return <h1 className="no-event">No events available!</h1>;
 
     const filteredEvents = events?.filter((event) =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase())
