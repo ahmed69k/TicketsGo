@@ -21,18 +21,21 @@ function ApprovedEvents() {
         };
         fetchEvents();
     }, []);
+
+    if (loading){
+        return(
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+            <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+        </div>
+        )
+  }
+
     if(!events) return <h1 className="no-event">No events available!</h1>;
 
     const filteredEvents = events?.filter((event) =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    if (loading){
-    return(
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
-      </div>
-    )
-  }
+
     return (
         <div>
             <h1 className="event-title">Available Events</h1>

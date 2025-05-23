@@ -17,7 +17,6 @@ import MyEvents from "../pages/MyEvents.jsx";
 import EventDetails from "../pages/EventsDetails.jsx";
 import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
 import UserBookings from "../pages/UserBookings";
-import MyEvents from "../pages/MyEvents.jsx";
 import EditEvent from "../pages/EditEvent.jsx"; 
 
 function AppRoutes() {
