@@ -84,11 +84,10 @@ function MyEvents() {
             <p><strong>Location:</strong> {event.location}</p>
             <p><strong>Tickets:</strong> {event.totalTickets - event.remainingTickets} / {event.totalTickets} booked</p>
 
-            {/* ✅ STATUS */}
             <p>
               <strong>Status:</strong>{" "}
-              <span style={{ color: getStatusColor(event.status), fontWeight: "bold" }}>
-                {event.status}
+              <span>
+                {event.Status}
               </span>
             </p>
 
