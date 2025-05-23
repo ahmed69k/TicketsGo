@@ -1,8 +1,7 @@
-// src/pages/ForgetPassword.jsx
-
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from "../services/api";
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ function ForgetPassword() {
     console.log("Trying to reset password for:", email); // ✅ logs current email
 
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/forgot-password", {
+      const response = await api.get(`/forgot-password`, {
         params: { email },
         withCredentials: true,
       });

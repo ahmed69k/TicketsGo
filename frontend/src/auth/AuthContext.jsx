@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/users/profile", {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}/api/v1/users/profile`, {
           withCredentials: true,
         });
         setUser(res.data); // Set authenticated user
@@ -64,8 +64,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Show a loading screen while checking login
-  if (loading) return <div>Loading...</div>;
+  if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 200, height: 200 }} />
+      </div>
+    )
+  }
 
   return (
     <AuthContext.Provider value={{ user, isLoggedIn, login, logout, loading }}>

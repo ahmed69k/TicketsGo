@@ -9,6 +9,9 @@
   text-align: center;
   color: #1f2937;
 }
+.event-details-in:hover{
+  box-shadow: 0 4px 24px rgba(236, 72, 153, 0.15);
+}
 .event-details-in h1 {
   font-size: 36px;
   margin-bottom: 30px;

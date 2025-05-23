@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from "../services/api";
 
 function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -18,7 +19,7 @@ function ResetPassword() {
     }
 
     try {
-      const response = await axios.put("http://localhost:3000/api/v1/reset-password", {
+      const response = await api.put("/api/v1/reset-password", {
         token,
         password
       });

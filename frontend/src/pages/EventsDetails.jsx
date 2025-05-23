@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useAuth } from "../auth/AuthContext";
 import "../styling/EventsDetails.css";
+import {toast} from 'react-toastify'
 
 function EventDetails() {
   const { id } = useParams();
@@ -47,14 +48,21 @@ function EventDetails() {
         setTicketsToBook(1);
         const updatedEvent = await api.get(`/events/${id}`);
         setEvent(updatedEvent.data);
+        toast.success("Booking Successful!")
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Booking failed");
       console.error("Booking failed:", err);
+      toast.error("Booking Error!")
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+    if (loading){
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    )
+  }
   if (!event) return <p>Event not found</p>;
 
   const remaining = event.remainingTickets;
@@ -72,7 +80,7 @@ function EventDetails() {
       <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
       <p><strong>Location:</strong> {event.location}</p>
       <p><strong>Description:</strong> {event.description}</p>
-      <p><strong>Ticket Price:</strong> ${event.ticketPrice}</p>
+      <p><strong>Ticket Price:</strong> {event.ticketPrice} EGP</p>
       <p><strong>Availability:</strong> {availabilityMessage}</p>
 
       {/* Only show form if user is logged in and tickets are available */}
@@ -101,12 +109,6 @@ function EventDetails() {
 
       {remaining === 0 && (
         <p style={{ color: "red", fontWeight: "bold" }}>This event is sold out.</p>
-      )}
-
-      {bookingSuccess && (
-        <p style={{ color: "green", marginTop: "1rem" }}>
-          Booking successful!
-        </p>
       )}
     </div>
   );

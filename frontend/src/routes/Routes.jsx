@@ -9,10 +9,14 @@ import ProtectedRoute from "../auth/ProtectedRoutes.jsx";
 import AllEvents from "../pages/AllEvents.jsx";
 import Unauthorized from "../pages/Unauthorized.jsx";
 import AdminUsersPage from "../pages/AdminUsersPage.jsx";
-import ForgetPassword from "../pages/Forgetpassword.jsx";
+import ForgetPassword from "../pages/ForgetPassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
-import EventDetails from "../pages/EventsDetails.jsx"; // ✅ Add this import
+import CreateEvent from "../pages/CreateEvent.jsx";
+import MyEvents from "../pages/MyEvents.jsx"; 
+import EventDetails from "../pages/EventsDetails.jsx";
+import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
+import UserBookings from "../pages/UserBookings";
 
 function AppRoutes() {
   return (
@@ -22,14 +26,16 @@ function AppRoutes() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        
         <Route
           path="/approvedEvents"
           element={
-            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]}>
+            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]} allowPublic = {true}>
               <ApprovedEvents />
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/allEvents"
           element={
@@ -38,7 +44,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+
         <Route
           path="/users"
           element={
@@ -47,12 +53,47 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/create-event"
+          element={
+            <ProtectedRoute allowedRoles={["Organizer"]}>
+              <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-events"
+          element={
+            <ProtectedRoute allowedRoles={["Organizer"]}>
+              <MyEvents />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/forgot-password" element={<ForgetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path='/peak' element={<Peaky />} />
+        <Route
+          path="/admin/users/:id/edit-role"
+          element={
+            <ProtectedRoute allowedRoles={"System Admin"}>
+              <UpdateUserRolePage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/peak" element={<Peaky />} />
-
-        
         <Route path="/events/:id" element={<EventDetails />} />
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["Standard User"]}>
+              <UserBookings />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
