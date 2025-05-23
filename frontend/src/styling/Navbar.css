@@ -6,11 +6,19 @@
 
 
 .navbar {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index: 500;
   background-color: #111827;
   color: white;
   padding: 0 ; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+body{
+  padding-top: 100px;
 }
 
 .navbar-container {
@@ -30,6 +38,9 @@
 }
 .name:hover{
   transform: scale(1.1);
+}
+.name:active{
+  transform: scale(0.9);
 }
 
 .nav-links {

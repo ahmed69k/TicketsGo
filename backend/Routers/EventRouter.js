@@ -6,31 +6,25 @@ const authenticationMiddleware = require('../Middleware/AuthenticationMiddleware
 
 const router = express.Router();
 
-// * Create an event $
+// * Create an event
 router.post("/", authenticationMiddleware, authorizationMiddleware(['Organizer']), eventController.create);
 
-// * Get all approved events $
+// * Get all approved events
 router.get("/", eventController.getAllApprovedEvents);
 
-// * Get all events $
+// * Get all events (System Admin / Organizer)
 router.get("/all", authenticationMiddleware, authorizationMiddleware(['System Admin','Organizer']), eventController.getAllEvents);
 
-// * Get an event by ID $
+// * Get an event by ID
 router.get("/:id", eventController.getEvent);
 
-// * Update an event by ID $
+// * Update an event by ID
 router.put("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.updateEvent);
 
-// * Delete an event by ID $
+// * Delete an event by ID
 router.delete("/:id", authenticationMiddleware, authorizationMiddleware(['Organizer', 'System Admin']), eventController.deleteEvent);
 
-// // * Update an event's status
-// router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
-
-
-// * Get an event by ID $
-router.get("/:id", eventController.getEvent);
-
-
+// ✅ Approve or Decline an event by updating its status
+router.put("/:id/status", authenticationMiddleware, authorizationMiddleware(['System Admin']), eventController.updateStatus);
 
 module.exports = router;

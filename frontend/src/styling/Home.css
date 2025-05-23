@@ -21,14 +21,12 @@
     color 0.3s,
     transform 0.3s;
 }
-button:hover {
+.button-lr:hover {
   color: white;
   transform: scale(1.1);
-
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.button-lr:active{
+  transform: scale(0.9);
 }
 
 .button-container{
@@ -78,4 +76,9 @@ button:focus-visible {
   margin-top:20px;
   margin-bottom: 20px;
   list-style-type:none;
+}
+.p1-home2{
+  text-align: center;
+  font-size: 23px;
+  margin-top:40px
 }

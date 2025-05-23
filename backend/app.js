@@ -19,15 +19,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin:[
+        'http://localhost:5173',
+        'https://ticketsgo.vercel.app'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
 app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1/', userRouter);
-app.use(authenticationMiddleware);
 app.use("/api/v1/events", eventRouter);
+app.use(authenticationMiddleware);
 app.use("/api/v1/bookings", bookingRouter);
 
 const db_name = process.env.DB_NAME;
