@@ -47,8 +47,8 @@ function UserBookings() {
   }
 
   return (
-    <div className="events-container user-bookings-padding" style={{ paddingTop: 120 }}>
-      <h1 className="title-events-all">My Bookings</h1>
+    <div className="events-container user-bookings-padding" style={{ paddingTop: 0 }}>
+      <h1 className="title-events-all" >My Bookings</h1>
       <div className="events-container">
         {bookings.map((booking) => {
           const ticket = booking.bookedTicket[0]; 
