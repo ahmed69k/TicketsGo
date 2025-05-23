@@ -80,7 +80,7 @@ function EventDetails() {
       <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
       <p><strong>Location:</strong> {event.location}</p>
       <p><strong>Description:</strong> {event.description}</p>
-      <p><strong>Ticket Price:</strong> ${event.ticketPrice}</p>
+      <p><strong>Ticket Price:</strong> {event.ticketPrice} EGP</p>
       <p><strong>Availability:</strong> {availabilityMessage}</p>
 
       {/* Only show form if user is logged in and tickets are available */}
