@@ -167,7 +167,7 @@ return (
             <label htmlFor="dev-pin">Enter Dev PIN:</label>
             <input
               id="dev-pin"
-              type="password"
+              type="Number"
               value={devPin}
               onChange={(e) => setDevPin(e.target.value)}
               size={10}

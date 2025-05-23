@@ -39,7 +39,7 @@ function Home() {
       ) : (
         <div>
           <h1 className="h1-home">🎟️ Welcome to TicketsGo!</h1>
-          <p className="p1-home">To book tickets or check out events please log in or register:</p>
+          <p className="p1-home">To book event tickets please log in or register:</p>
 
           <div className="button-container">
             <Link to="/login">
@@ -49,6 +49,10 @@ function Home() {
               <button className="button-lr">Register</button>
             </Link>
           </div>
+          <p className="p1-home2"> Or check out the current events: </p>
+          <Link to="/approvedEvents"> 
+          <button className="button-lr"> Events</button>
+          </Link>
 
           <div className="features">
             <h3>Why TicketsGo? 👇</h3>

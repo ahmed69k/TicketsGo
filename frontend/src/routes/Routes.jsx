@@ -13,8 +13,12 @@ import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
 import CreateEvent from "../pages/CreateEvent.jsx";
+import MyEvents from "../pages/MyEvents.jsx"; 
+import EventDetails from "../pages/EventsDetails.jsx";
+import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
+import UserBookings from "../pages/UserBookings";
 import MyEvents from "../pages/MyEvents.jsx";
-import EditEvent from "../pages/EditEvent.jsx";   // <-- Added import here
+import EditEvent from "../pages/EditEvent.jsx"; 
 
 function AppRoutes() {
   return (
@@ -28,7 +32,7 @@ function AppRoutes() {
         <Route
           path="/approvedEvents"
           element={
-            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]}>
+            <ProtectedRoute allowedRoles={["Standard User", "System Admin", "Organizer"]} allowPublic = {true}>
               <ApprovedEvents />
             </ProtectedRoute>
           }
@@ -84,6 +88,15 @@ function AppRoutes() {
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/peak" element={<Peaky />} />
+        <Route path="/events/:id" element={<EventDetails />} />
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute allowedRoles={["Standard User"]}>
+              <UserBookings />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import '../styling/CreateEvent.css'
 
 function CreateEvent() {
   const [name, setName] = useState("");
@@ -45,6 +46,7 @@ function CreateEvent() {
     <div className="create-event-page">
       <h1>Create New Event</h1>
       <form onSubmit={handleSubmit}>
+      <div className="input-group-ce">
         <label htmlFor="name">Event Name:</label>
         <input
           id="name"
@@ -53,15 +55,19 @@ function CreateEvent() {
           onChange={(e) => setName(e.target.value)}
           required
         />
+      </div>
 
-        <label htmlFor="description">Description:</label>
+      <div className="input-group-ce">
+      <label htmlFor="description">Description:</label>
         <textarea
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
         />
+      </div>
 
+      <div className="input-group-ce">
         <label htmlFor="date">Date & Time:</label>
         <input
           id="date"
@@ -70,8 +76,10 @@ function CreateEvent() {
           onChange={(e) => setDate(e.target.value)}
           required
         />
+      </div>
 
-        <label htmlFor="location">Location:</label>
+      <div className="input-group-ce">
+          <label htmlFor="location">Location:</label>
         <input
           id="location"
           type="text"
@@ -79,8 +87,9 @@ function CreateEvent() {
           onChange={(e) => setLocation(e.target.value)}
           required
         />
-
-        <label htmlFor="tickets">Number of Tickets:</label>
+      </div>
+      <div className="input-group-ce">
+                <label htmlFor="tickets">Number of Tickets:</label>
         <input
           id="tickets"
           type="number"
@@ -89,8 +98,10 @@ function CreateEvent() {
           onChange={(e) => setTickets(parseInt(e.target.value, 10))}
           required
         />
+      </div>
 
-        <label htmlFor="ticketPrice">Ticket Price:</label>
+      <div className="input-group-ce">
+               <label htmlFor="ticketPrice">Ticket Price:</label>
         <input
           id="ticketPrice"
           type="number"
@@ -99,7 +110,9 @@ function CreateEvent() {
           onChange={(e) => setTicketPrice(parseFloat(e.target.value))}
           required
         />
+      </div>
 
+      <div className="input-group-ce">
         <label htmlFor="category">Category:</label>
         <input
           id="category"
@@ -108,6 +121,7 @@ function CreateEvent() {
           onChange={(e) => setCategory(e.target.value)}
           required
         />
+      </div>
 
         <button type="submit" disabled={loading}>
           {loading ? "Creating..." : "Create Event"}
