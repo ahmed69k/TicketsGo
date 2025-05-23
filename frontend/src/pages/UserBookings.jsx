@@ -43,7 +43,7 @@ function UserBookings() {
   }
 
   if (!bookings.length) {
-    return <h1 className="no-event">You have no bookings yet.</h1>;
+    return <h1 className="no-event" style={{marginBottom:50}}>You have no bookings yet.</h1>;
   }
 
   return (
@@ -69,7 +69,7 @@ function UserBookings() {
                 <strong>Number of Tickets:</strong> {booking.numOfTickets}
               </p>
               <p>
-                <strong>Total Price:</strong> ${booking.totalPrice?.toFixed(2) || "N/A"}
+                <strong>Total Price:</strong> {booking.totalPrice?.toFixed(2) || "N/A"} EGP
               </p>
               <p>
                 <strong>Status:</strong> {booking.status || "Active"}
