@@ -46,7 +46,7 @@ function CreateEvent() {
     <div className="create-event-page">
       <h1>Create New Event</h1>
       <form onSubmit={handleSubmit}>
-      <div className="input-group">
+      <div className="input-group-ce">
         <label htmlFor="name">Event Name:</label>
         <input
           id="name"
@@ -57,7 +57,7 @@ function CreateEvent() {
         />
       </div>
 
-      <div className="input-group">
+      <div className="input-group-ce">
       <label htmlFor="description">Description:</label>
         <textarea
           id="description"
@@ -67,7 +67,7 @@ function CreateEvent() {
         />
       </div>
 
-      <div className="input-group">
+      <div className="input-group-ce">
         <label htmlFor="date">Date & Time:</label>
         <input
           id="date"
@@ -78,7 +78,7 @@ function CreateEvent() {
         />
       </div>
 
-      <div className="input-group">
+      <div className="input-group-ce">
           <label htmlFor="location">Location:</label>
         <input
           id="location"
@@ -88,7 +88,7 @@ function CreateEvent() {
           required
         />
       </div>
-      <div className="input-group">
+      <div className="input-group-ce">
                 <label htmlFor="tickets">Number of Tickets:</label>
         <input
           id="tickets"
@@ -100,7 +100,7 @@ function CreateEvent() {
         />
       </div>
 
-      <div className="input-group">
+      <div className="input-group-ce">
                <label htmlFor="ticketPrice">Ticket Price:</label>
         <input
           id="ticketPrice"
@@ -112,7 +112,7 @@ function CreateEvent() {
         />
       </div>
 
-      <div className="input-group">
+      <div className="input-group-ce">
         <label htmlFor="category">Category:</label>
         <input
           id="category"

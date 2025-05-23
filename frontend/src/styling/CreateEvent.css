@@ -4,21 +4,51 @@
   align-items: center;
   justify-content: center;
 }
-.input-group {
+.create-event-page h1{
+    color: #ec4899;
+    margin-bottom: 20px
+}
+
+.create-event-page h1::after{
+    content: "";
+    position: absolute;
+    left:40.5%;
+    bottom:78.5%;
+    height: 3px;
+    width:275px;
+    background-color: #ec4899;
+    border-radius: 2px;
+    animation: grow 0.5s ease-out forwards;
+}
+@keyframes grow{
+    from{
+        width: 0%;
+        opacity: 0;
+    }
+    to{
+        width:100%;
+        opacity:1;
+    }
+}
+
+.input-group-ce {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 1rem;
   margin-top: 10px;
 }
-.input-group input,
-.input-group select,
+.input-group-ce input,
+.input-group-ce select,
 .input-group textarea {
     width:300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height:30px 
 }
-.input-group label {
+.input-group-ce label {
   margin-bottom: 0.3rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 .submit-wrapper {
   width: 100%;
