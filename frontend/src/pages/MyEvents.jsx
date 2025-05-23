@@ -34,6 +34,13 @@ function MyEvents() {
     navigate(`/edit-event/${eventId}`);
   };
 
+  const getStatusColor = (status) => {
+    if (status === "approved") return "green";
+    if (status === "pending") return "orange";
+    if (status === "declined") return "red";
+    return "gray";
+  };
+
   const renderAnalytics = (event) => {
     const booked = event.totalTickets - event.remainingTickets;
     const remaining = event.remainingTickets;
@@ -77,6 +84,15 @@ function MyEvents() {
             <p><strong>Date:</strong> {event.date}</p>
             <p><strong>Location:</strong> {event.location}</p>
             <p><strong>Tickets:</strong> {event.totalTickets - event.remainingTickets} / {event.totalTickets} booked</p>
+
+            {/* ✅ STATUS */}
+            <p>
+              <strong>Status:</strong>{" "}
+              <span style={{ color: getStatusColor(event.status), fontWeight: "bold" }}>
+                {event.status}
+              </span>
+            </p>
+
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               {renderAnalytics(event)}
               <div>
