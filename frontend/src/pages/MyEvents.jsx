@@ -33,7 +33,6 @@ function MyEvents() {
   const handleEdit = (eventId) => {
     navigate(`/edit-event/${eventId}`);
   };
-
   const getStatusColor = (status) => {
     if (status === "approved") return "green";
     if (status === "pending") return "orange";
