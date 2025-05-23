@@ -85,7 +85,7 @@ function AllEvents(){
       <input
         type="text"
         placeholder="Search events..."
-        className="search-input"
+        className="search-input-all"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -94,7 +94,7 @@ function AllEvents(){
         {filteredEvents.map((event, index) => (
           <div className="event-box" key={index}>
             <h2>{event.title}</h2>
-            <p><strong>Date: </strong>{event.date}</p>
+            <p><strong>Date and Time: </strong>{new Date(event.date).toLocaleString()}</p>
             <p><strong>Location: </strong>{event.location}</p>
             <p><strong>Description: </strong>{event.description}</p>
             <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
