@@ -1,13 +1,13 @@
 .footer {
+  /* Remove position: fixed, bottom, left, z-index */
   width: 100%;
-  background: #e5e7eb; /* light gray */
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  background: #e5e7eb;
   text-align: center;
   padding: 0.4rem 0;
-  z-index: 100;
-
+  color: #757c88;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: auto; /* This makes it stick to the bottom when content is short */
 }
 
 .footer-info {

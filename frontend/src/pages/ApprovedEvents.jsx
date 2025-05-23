@@ -21,6 +21,7 @@ function ApprovedEvents() {
         };
         fetchEvents();
     }, []);
+    if(!events) return <h1 className="no-event">No events available!</h1>;
 
     const filteredEvents = events?.filter((event) =>
         event.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -51,9 +52,12 @@ function ApprovedEvents() {
                         style={{ cursor: "pointer" }}
                     >
                         <h2>{event.title}</h2>
-                        <p><strong>Date: </strong> {new Date(event.date).toLocaleString()}</p>
-                        <p><strong>Location: </strong> {event.location}</p>
-                        <p><strong>Ticket Price: </strong>{event.ticketPrice} EGP</p>
+                        <p><strong>Date and Time: </strong>{new Date(event.date).toLocaleString()}</p>
+                        <p><strong>Location: </strong>{event.location}</p>
+                        <p><strong>Description: </strong>{event.description}</p>
+                        <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
+                        <p><strong>Remaining tickets: </strong>{event.remainingTickets}</p>
+                        <p><strong>Status: </strong>{event.Status}</p>
                         <button className="button-lr">View & Book</button>
                     </div>
                 ))}

@@ -4,10 +4,12 @@ import api from "../services/api";
 import UserRow from "../components/UserRow.jsx";
 import "../styling/AdminUsersPage.css";
 
+
 function AdminUsersPage() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -41,15 +43,25 @@ function AdminUsersPage() {
       </div>
     )
   }
+    const filteredUsers = users.filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  return (
+    return (
     <div className="users-page">
       <h1>Users List</h1>
-      {users.length === 0 ? (
+      <input
+        type="text"
+        placeholder="Search users..."
+        className="search-input-users"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {filteredUsers.length === 0 ? (
         <p className="no-event">No users found!</p>
       ) : (
         <div className="users-list-container">
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <UserRow
               key={user._id}
               user={user}

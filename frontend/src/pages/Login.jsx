@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styling/Login.css";
 import { toast } from "react-toastify";
-import api from "../services/api";
+import api from '../services/api.jsx'
 
 axios.defaults.withCredentials = true;
 
@@ -50,8 +50,8 @@ function Login() {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/login",
+      const res = await api.post(
+        "/login",
         { email, password },
         { withCredentials: true }
       );
@@ -67,7 +67,7 @@ function Login() {
       }
     } catch (e) {
       setError(e.response?.data?.message || "Invalid email or password.");
-      console.log("Login Error", e);
+      console.log("Login Error!!!!", e);
     }
   };
 
@@ -76,8 +76,8 @@ function Login() {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/verify-otp",
+      const res = await api.post(
+        "/verify-otp",
         { userId, otp },
         { withCredentials: true }
       );
@@ -167,7 +167,7 @@ return (
             <label htmlFor="dev-pin">Enter Dev PIN:</label>
             <input
               id="dev-pin"
-              type="password"
+              type="Number"
               value={devPin}
               onChange={(e) => setDevPin(e.target.value)}
               size={10}

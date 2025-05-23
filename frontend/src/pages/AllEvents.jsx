@@ -22,26 +22,13 @@ function AllEvents(){
         }
         fetchEvents();
     },[])
-          if (loading){
-    return(
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
-      </div>
-    )
+    if (loading){
+        return(
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+            <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+        </div>
+        )
   }
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const res = await api.get('/events/all');
-        setEvents(res.data);
-      } catch (e) {
-        console.error("Error fetching events:", e);
-        toast.error("Failed to load events ❌");
-      }
-    };
-    fetchEvents();
-  }, []);
 
   if (!events) {
     return <h1 className="no-event">No events available!</h1>;
@@ -98,7 +85,7 @@ function AllEvents(){
       <input
         type="text"
         placeholder="Search events..."
-        className="search-input"
+        className="search-input-all"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -107,7 +94,7 @@ function AllEvents(){
         {filteredEvents.map((event, index) => (
           <div className="event-box" key={index}>
             <h2>{event.title}</h2>
-            <p><strong>Date: </strong>{event.date}</p>
+            <p><strong>Date and Time: </strong>{new Date(event.date).toLocaleString()}</p>
             <p><strong>Location: </strong>{event.location}</p>
             <p><strong>Description: </strong>{event.description}</p>
             <p><strong>Ticket price: </strong>{event.ticketPrice}</p>
