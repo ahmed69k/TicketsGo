@@ -14,7 +14,7 @@ function UserBookings() {
         setBookings(res.data);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
-        toast.error("Failed to load bookings!");
+        toast.error("Failed to load bookings ❌");
       } finally {
         setLoading(false);
       }
@@ -27,10 +27,10 @@ function UserBookings() {
     try {
       await api.delete(`/bookings/${bookingId}`);
       setBookings((prev) => prev.filter((b) => b._id !== bookingId));
-      toast.success("Booking cancelled!");
+      toast.success("Booking cancelled 🗑️");
     } catch (error) {
       console.error("Error cancelling booking:", error);
-      toast.error("Failed to cancel booking");
+      toast.error("Failed to cancel booking ❌");
     }
   };
 
@@ -43,12 +43,12 @@ function UserBookings() {
   }
 
   if (!bookings.length) {
-    return <h1 className="no-event" style={{marginBottom:50}}>You have no bookings yet.</h1>;
+    return <h1 className="no-event">You have no bookings yet.</h1>;
   }
 
   return (
-    <div className="events-container user-bookings-padding" style={{ paddingTop: 0 }}>
-      <h1 className="title-events-all" >My Bookings</h1>
+    <div className="events-container user-bookings-padding" style={{ paddingTop: 120 }}>
+      <h1 className="title-events-all">My Bookings</h1>
       <div className="events-container">
         {bookings.map((booking) => {
           const ticket = booking.bookedTicket[0]; 
@@ -69,7 +69,7 @@ function UserBookings() {
                 <strong>Number of Tickets:</strong> {booking.numOfTickets}
               </p>
               <p>
-                <strong>Total Price:</strong> {booking.totalPrice?.toFixed(2) || "N/A"} EGP
+                <strong>Total Price:</strong> ${booking.totalPrice?.toFixed(2) || "N/A"}
               </p>
               <p>
                 <strong>Status:</strong> {booking.status || "Active"}
