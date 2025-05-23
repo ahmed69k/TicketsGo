@@ -9,6 +9,8 @@ function CreateEvent() {
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [tickets, setTickets] = useState(0);
+  const [ticketPrice, setTicketPrice] = useState(0); // Add this if your schema requires it
+  const [category, setCategory] = useState(""); // Add this if your schema requires it
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -19,15 +21,18 @@ function CreateEvent() {
 
     try {
       await api.post("/events", {
-        name,
+        title: name,
         description,
         date,
         location,
-        tickets,
+        totalTickets: tickets,
+        remainingTickets: tickets,
+        ticketPrice,
+        category,
       });
 
       toast.success("Event created successfully!");
-      navigate("/profile"); 
+      navigate("/profile");
     } catch (error) {
       console.error("Error creating event:", error);
       toast.error(error.response?.data?.message || "Failed to create event.");
@@ -82,6 +87,25 @@ function CreateEvent() {
           min="1"
           value={tickets}
           onChange={(e) => setTickets(parseInt(e.target.value, 10))}
+          required
+        />
+
+        <label htmlFor="ticketPrice">Ticket Price:</label>
+        <input
+          id="ticketPrice"
+          type="number"
+          min="0"
+          value={ticketPrice}
+          onChange={(e) => setTicketPrice(parseFloat(e.target.value))}
+          required
+        />
+
+        <label htmlFor="category">Category:</label>
+        <input
+          id="category"
+          type="text"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
           required
         />
 

@@ -13,6 +13,7 @@ import ForgetPassword from "../pages/Forgetpassword.jsx";
 import ResetPassword from "../pages/ResetPassword.jsx";
 import Peaky from "../pages/peak.jsx";
 import CreateEvent from "../pages/CreateEvent.jsx";
+import MyEvents from "../pages/MyEvents.jsx"; // ✅ Added this import
 
 function AppRoutes() {
   return (
@@ -56,6 +57,16 @@ function AppRoutes() {
           element={
             <ProtectedRoute allowedRoles={["Organizer"]}>
               <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ✅ NEW ROUTE to view own events */}
+        <Route
+          path="/my-events"
+          element={
+            <ProtectedRoute allowedRoles={["Organizer"]}>
+              <MyEvents />
             </ProtectedRoute>
           }
         />
