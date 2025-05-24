@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import pic from '../assets/defaultpfp.jpg'
+import '../styling/MyEvents.css'
 
 const COLORS = ["#00C49F", "#FF8042"]; // booked, remaining
 
@@ -56,7 +58,7 @@ function MyEvents() {
           cx="50%"
           cy="50%"
           outerRadius={60}
-          fill="#8884d8"
+          fill="#ec4899"
           dataKey="value"
           label
         >
@@ -71,38 +73,42 @@ function MyEvents() {
   };
 
   return (
-    <div>
-      <h1>My Events with Analytics</h1>
-      {events.length === 0 ? (
-        <p>No events found.</p>
-      ) : (
-        events.map((event) => (
-          <div key={event._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-            <h3>{event.title}</h3>
-            <p>{event.description}</p>
-            <p><strong>Date:</strong> {event.date}</p>
-            <p><strong>Location:</strong> {event.location}</p>
-            <p><strong>Tickets:</strong> {event.totalTickets - event.remainingTickets} / {event.totalTickets} booked</p>
-
-            <p>
-              <strong>Status:</strong>{" "}
-              <span>
-                {event.Status}
-              </span>
-            </p>
-
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              {renderAnalytics(event)}
-              <div>
-                <button onClick={() => handleEdit(event._id)} style={{ marginRight: "10px" }}>Edit</button>
-                <button onClick={() => handleDelete(event._id)}>Delete</button>
-              </div>
+  <div>
+    <h1 className="title-me">My Events</h1>
+    {events.length === 0 ? (
+      <p>No events found.</p>
+    ) : (
+      
+      <div className="event-cards-container">
+        {events.map((event) => (
+        <div key={event._id} className="event-card">
+          <div className="pic-name">
+            <img className="img-myevents" src={event.image ? `${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${event.image}`: pic} alt="no pic" />
+            <h3 className="title-e">{event.title}</h3>
+          </div>
+          <p>{event.description}</p>
+          <p><strong>Date:</strong> {event.date}</p>
+          <p><strong>Location:</strong> {event.location}</p>
+          <p><strong>Tickets:</strong> {event.totalTickets - event.remainingTickets} / {event.totalTickets} booked</p>
+          <p>
+            <strong>Status:</strong>{" "}
+            <span className={`status-text status-${event.Status}`}>
+              {event.Status}
+            </span>
+          </p>
+          <div className="event-actions">
+            {renderAnalytics(event)}
+            <div>
+              <button className="edit-btn" onClick={() => handleEdit(event._id)}>Edit</button>
+              <button className="delete-btn" onClick={() => handleDelete(event._id)}>Delete</button>
             </div>
           </div>
-        ))
-      )}
-    </div>
-  );
+        </div>
+      ))}
+      </div>
+    )}
+  </div>
+);
 }
 
 export default MyEvents;

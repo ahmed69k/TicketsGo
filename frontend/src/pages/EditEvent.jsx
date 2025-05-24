@@ -22,7 +22,24 @@ function EditEvent() {
     const fetchEvent = async () => {
       try {
         const res = await api.get(`/events/${id}`);
+        const event = res.data
+        if(event.date){
+          const d = new Date(event.date);
+        const pad = (n) => n.toString().padStart(2, '0');
+        const formatted =
+          d.getFullYear() +
+          '-' +
+          pad(d.getMonth() + 1) +
+          '-' +
+          pad(d.getDate()) +
+          'T' +
+          pad(d.getHours()) +
+          ':' +
+          pad(d.getMinutes());
+        event.date = formatted;
+        }
         setFormData(res.data);
+        
       } catch (err) {
         console.error("Failed to fetch event:", err);
       }
@@ -100,16 +117,6 @@ function EditEvent() {
             value={formData.location}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="image">Image URL:</label>
-          <input
-            id="image"
-            name="image"
-            type="text"
-            value={formData.image}
-            onChange={handleChange}
           />
         </div>
         <div className="input-group">
