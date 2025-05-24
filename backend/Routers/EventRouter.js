@@ -21,13 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // * Create an event with image upload
-router.post(
-  "/",
-  authenticationMiddleware,
-  authorizationMiddleware(['Organizer']),
-  upload.single("image"), // <-- This handles image uploads
-  eventController.create
-);
+router.post("/",authenticationMiddleware,authorizationMiddleware(['Organizer']),upload.single("image"),eventController.create);
 
 // * Get all approved events
 router.get("/", eventController.getAllApprovedEvents);

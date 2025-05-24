@@ -8,13 +8,14 @@ const eventController = {
     create: async (req, res) => {
         try {
             const { title, description, date, location, category, image, ticketPrice, totalTickets, remainingTickets} = req.body;
+            const imagePath = req.file ? `/uploads/${req.file.filename}` : ""
             const newEvent = new eventModel({
                 title,
                 description,
                 date,
                 location,
                 category,
-                image,
+                image:imagePath,
                 ticketPrice,
                 totalTickets,
                 remainingTickets,

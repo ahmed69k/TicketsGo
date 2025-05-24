@@ -120,16 +120,6 @@ function EditEvent() {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="image">Image URL:</label>
-          <input
-            id="image"
-            name="image"
-            type="text"
-            value={formData.image}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-group">
           <label htmlFor="ticketPrice">Ticket Price:</label>
           <input
             id="ticketPrice"
