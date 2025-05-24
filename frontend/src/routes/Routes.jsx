@@ -72,8 +72,14 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
-        
+        <Route
+          path="/admin/users/:id/edit-role"
+          element={
+            <ProtectedRoute allowedRoles={"System Admin"}>
+              <UpdateUserRolePage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/edit-event/:id"
           element={

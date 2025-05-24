@@ -87,7 +87,7 @@ function MyEvents() {
             <h3 className="title-e">{event.title}</h3>
           </div>
           <p>{event.description}</p>
-          <p><strong>Date:</strong> {event.date}</p>
+          <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
           <p><strong>Location:</strong> {event.location}</p>
           <p><strong>Tickets:</strong> {event.totalTickets - event.remainingTickets} / {event.totalTickets} booked</p>
           <p>

@@ -42,10 +42,10 @@ function AllEvents(){
           event._id === eventId ? { ...event, Status: "Approved" } : event
         )
       );
-      toast.success("Event approved! ✅");
+      toast.success("Event approved!");
     } catch (e) {
       console.error("Error approving event:", e);
-      toast.error("Failed to approve event ❌");
+      toast.error("Failed to approve event!");
     }
   };
 
@@ -60,7 +60,7 @@ function AllEvents(){
       toast.info("Event rejected.");
     } catch (e) {
       console.error("Error rejecting event:", e);
-      toast.error("Failed to reject event ❌");
+      toast.error("Failed to reject event!");
     }
   };
 
@@ -68,10 +68,10 @@ function AllEvents(){
     try {
       await api.delete(`/events/${eventId}`);
       setEvents((prev) => prev.filter((event) => event._id !== eventId));
-      toast.success("Event deleted! 🗑️");
+      toast.success("Event deleted!");
     } catch (e) {
       console.error("Error deleting event:", e);
-      toast.error("Failed to delete event ❌");
+      toast.error("Failed to delete event!");
     }
   };
 
