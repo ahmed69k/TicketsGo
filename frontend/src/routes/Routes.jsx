@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
@@ -17,6 +17,7 @@ import MyEvents from "../pages/MyEvents.jsx";
 import EventDetails from "../pages/EventsDetails.jsx";
 import UpdateUserRolePage from "../pages/UpdateUserRolePage.jsx"; 
 import UserBookings from "../pages/UserBookings";
+import EditEvent from "../pages/EditEvent.jsx"; 
 
 function AppRoutes() {
   return (
@@ -26,7 +27,7 @@ function AppRoutes() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        
+
         <Route
           path="/approvedEvents"
           element={
@@ -53,6 +54,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/create-event"
           element={
@@ -61,6 +63,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/my-events"
           element={
@@ -69,11 +72,6 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route path="/forgot-password" element={<ForgetPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path='/peak' element={<Peaky />} />
         <Route
           path="/admin/users/:id/edit-role"
           element={
@@ -82,6 +80,16 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/edit-event/:id"
+          element={
+            <ProtectedRoute allowedRoles={["Organizer"]}>
+              <EditEvent />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/peak" element={<Peaky />} />

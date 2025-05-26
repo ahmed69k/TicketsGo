@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import '../styling/UpdateRole.css'
 
 function UpdateUserRolePage() {
   const { id } = useParams();
@@ -17,7 +18,7 @@ function UpdateUserRolePage() {
         setRole(res.data.role);
       } catch (err) {
         console.error("Error loading user:", err);
-        toast.error("Failed to load user 😓");
+        toast.error("Failed to load user!");
       }
     };
     fetchUser();
@@ -27,7 +28,7 @@ function UpdateUserRolePage() {
     e.preventDefault();
     try {
       await api.put(`/users/${id}`, { role });
-      toast.success("Role updated successfully! 🎉");
+      toast.success("Role updated successfully!");
 
       setTimeout(() => {
         navigate("/users");
@@ -35,18 +36,18 @@ function UpdateUserRolePage() {
       }, 1000);
     } catch (err) {
       console.error("Error updating role:", err);
-      toast.error("Failed to update role 💔");
+      toast.error("Failed to update role! Did you select a role?");
     }
   };
 
   if (!user) return <p>Loading user...</p>;
 
   return (
-    <div className="register-page">
-      <h1>Update Role</h1>
+    <div className="update-role-container">
+      <h1 className="title-ur">Update Role</h1>
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="role">Select New Role:</label>
+        <div className="input-ee">
+          <label htmlFor="role"><strong>Select New Role:</strong></label>
           <select
             id="role"
             value={role}
@@ -59,7 +60,7 @@ function UpdateUserRolePage() {
           </select>
         </div>
 
-        <div className="submit-wrapper">
+        <div className="submit-wrapper-ee">
           <button className="button-lr" type="submit">
             Update Role
           </button>

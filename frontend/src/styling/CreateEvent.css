@@ -6,19 +6,21 @@
 }
 .create-event-page h1{
     color: #ec4899;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .create-event-page h1::after{
-    content: "";
-    position: absolute;
-    left:40.5%;
-    bottom:78.5%;
-    height: 3px;
-    width:275px;
-    background-color: #ec4899;
-    border-radius: 2px;
-    animation: grow 0.5s ease-out forwards;
+ content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #ec4899;
+  border-radius: 2px;
+  margin: -5px auto 0;
+  animation: grow 0.5s ease-out forwards;
 }
 @keyframes grow{
     from{

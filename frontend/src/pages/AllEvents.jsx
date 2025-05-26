@@ -4,30 +4,30 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 
-function AllEvents(){
-    const [events,setEvents] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("");
-    const [loading, setLoading] = useState(true)
-    
-    useEffect(()=>{
-        const fetchEvents = async() =>{
-            try{
-                const res = await api.get('/events/all')
-                setEvents(res.data);
-                setLoading(false);
-            }
-            catch(e){
-                console.log("Error fetching events:",e)
-            }
-        }
-        fetchEvents();
-    },[])
-    if (loading){
-        return(
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-            <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
-        </div>
-        )
+function AllEvents() {
+  const [events, setEvents] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await api.get('/events/all');
+        setEvents(res.data);
+        setLoading(false);
+      } catch (e) {
+        console.log("Error fetching events:", e);
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    );
   }
 
   if (!events) {
@@ -42,10 +42,10 @@ function AllEvents(){
           event._id === eventId ? { ...event, Status: "Approved" } : event
         )
       );
-      toast.success("Event approved! ✅");
+      toast.success("Event approved!");
     } catch (e) {
       console.error("Error approving event:", e);
-      toast.error("Failed to approve event ❌");
+      toast.error("Failed to approve event!");
     }
   };
 
@@ -60,7 +60,7 @@ function AllEvents(){
       toast.info("Event rejected.");
     } catch (e) {
       console.error("Error rejecting event:", e);
-      toast.error("Failed to reject event ❌");
+      toast.error("Failed to reject event!");
     }
   };
 
@@ -68,10 +68,10 @@ function AllEvents(){
     try {
       await api.delete(`/events/${eventId}`);
       setEvents((prev) => prev.filter((event) => event._id !== eventId));
-      toast.success("Event deleted! 🗑️");
+      toast.success("Event deleted!");
     } catch (e) {
       console.error("Error deleting event:", e);
-      toast.error("Failed to delete event ❌");
+      toast.error("Failed to delete event!");
     }
   };
 
@@ -93,7 +93,14 @@ function AllEvents(){
       <div className="events-container">
         {filteredEvents.map((event, index) => (
           <div className="event-box" key={index}>
-            <h2>{event.title}</h2>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <img
+                src={`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${event.image}`}
+                alt={event.title}
+                style={{ width: 50, height: 50, objectFit: "cover", borderRadius: "8px" }}
+              />
+              <h2>{event.title}</h2>
+            </div>
             <p><strong>Date and Time: </strong>{new Date(event.date).toLocaleString()}</p>
             <p><strong>Location: </strong>{event.location}</p>
             <p><strong>Description: </strong>{event.description}</p>

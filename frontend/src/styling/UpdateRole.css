@@ -1,0 +1,19 @@
+.update-role-container{
+    justify-content: center;
+}
+
+.title-ur{
+   color: #ec4899;
+   margin-bottom:20px
+}
+.input-ee label{
+    margin-right:10px;
+    margin-bottom:20px;
+}
+.input-ee select{
+    height: 23px;
+    width:200px
+}
+.submit-wrapper-ee{
+    margin-bottom:20px
+}

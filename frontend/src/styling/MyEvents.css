@@ -1,0 +1,110 @@
+.pic-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pic-name h3{
+    color: #ec4899;
+    margin-bottom:20px
+}
+.title-me{
+    color:#ec4899;
+    margin-bottom: 20px;
+     display: inline-block;    /* Only as wide as the text */
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.title-me::after{
+  content: "";
+  display:block;
+  height: 3px;
+  width:100%;
+  background-color: #ec4899;
+  border-radius: 2px;
+  margin:-5px auto 0;
+  animation: grow 0.5s ease-out forwards;
+}
+@keyframes grow{
+  from{
+    width:0;
+    opacity:0;
+  }
+  to{
+    width: 100%;
+    opacity:0;
+  }
+}
+.img-myevents{
+    object-fit: cover;
+    border-radius: 20px;
+    max-width: 50px;
+    max-height: 50px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    
+}
+.event-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  justify-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+
+}
+.event-card{
+background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  min-width: 220px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.event-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-text {
+  font-weight: bold;
+}
+
+.status-Approved {
+  color: green;
+}
+
+.status-Pending {
+  color: orange;
+}
+
+.status-Declined {
+  color: red;
+}
+
+.status-undefined {
+  color: gray;
+}
+
+
+
+.delete-btn:last-child {
+  margin-left:10px
+}
+.event-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
