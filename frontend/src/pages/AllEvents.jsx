@@ -4,30 +4,30 @@ import { useEffect, useState } from 'react';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 
-function AllEvents(){
-    const [events,setEvents] = useState(null)
-    const [searchTerm, setSearchTerm] = useState("");
-    const [loading, setLoading] = useState(true)
-    
-    useEffect(()=>{
-        const fetchEvents = async() =>{
-            try{
-                const res = await api.get('/events/all')
-                setEvents(res.data);
-                setLoading(false);
-            }
-            catch(e){
-                console.log("Error fetching events:",e)
-            }
-        }
-        fetchEvents();
-    },[])
-    if (loading){
-        return(
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-            <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
-        </div>
-        )
+function AllEvents() {
+  const [events, setEvents] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await api.get('/events/all');
+        setEvents(res.data);
+        setLoading(false);
+      } catch (e) {
+        console.log("Error fetching events:", e);
+      }
+    };
+    fetchEvents();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
+        <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
+      </div>
+    );
   }
 
   if (!events) {
@@ -93,7 +93,14 @@ function AllEvents(){
       <div className="events-container">
         {filteredEvents.map((event, index) => (
           <div className="event-box" key={index}>
-            <h2>{event.title}</h2>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <img
+                src={`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${event.image}`}
+                alt={event.title}
+                style={{ width: 50, height: 50, objectFit: "cover", borderRadius: "8px" }}
+              />
+              <h2>{event.title}</h2>
+            </div>
             <p><strong>Date and Time: </strong>{new Date(event.date).toLocaleString()}</p>
             <p><strong>Location: </strong>{event.location}</p>
             <p><strong>Description: </strong>{event.description}</p>

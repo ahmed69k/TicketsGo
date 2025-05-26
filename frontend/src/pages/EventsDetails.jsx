@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useAuth } from "../auth/AuthContext";
 import "../styling/EventsDetails.css";
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
 
 function EventDetails() {
   const { id } = useParams();
@@ -56,8 +56,8 @@ function EventDetails() {
     }
   };
 
-    if (loading){
-    return(
+  if (loading) {
+    return (
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
         <img src="/loader.gif" alt="Loading..." style={{ width: 500, height: 500 }} />
       </div>
@@ -76,7 +76,14 @@ function EventDetails() {
 
   return (
     <div className="event-details-in">
-      <h1>{event.title}</h1>
+      <div className="event-details-header">
+          <img
+            src={`${import.meta.env.VITE_BACKEND_LINK_RAILWAY}${event.image}`}
+            alt={event.title}
+            style={{ width: 80, height: 80, objectFit: "cover", borderRadius: "8px" }}
+          />
+          <h1>{event.title}</h1>
+        </div>
       <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
       <p><strong>Location:</strong> {event.location}</p>
       <p><strong>Description:</strong> {event.description}</p>
@@ -97,7 +104,7 @@ function EventDetails() {
             onChange={(e) => setTicketsToBook(Number(e.target.value))}
             required
           />
-          <button className="button-lr"type="submit">Book Now</button>
+          <button className="button-lr" type="submit">Book Now</button>
         </form>
       )}
 
