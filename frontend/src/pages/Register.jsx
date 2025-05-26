@@ -84,7 +84,6 @@ function Register() {
       >
         <option value="">Select a role</option>
         <option value="Standard User">Standard User</option>
-        <option value="System Admin">System Admin</option>
         <option value="Organizer">Event Organizer</option>
       </select>
     </div>
