@@ -40,7 +40,7 @@ function Register() {
     }, 1000);
   } catch (e) {
     console.log("Error registering:", e);
-    toast.error("Register failed 💔");
+    toast.error("Register failed!");
   }
 };
   return (
