@@ -12,8 +12,8 @@ function App() {
   return (
 
       <StrictMode>
-        <ToastContainer/>
-        <Navbar/>
+      <ToastContainer/>
+      <Navbar/>
       <AppRoutes />
       <Footer/>
     </StrictMode>

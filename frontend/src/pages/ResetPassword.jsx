@@ -19,9 +19,9 @@ function ResetPassword() {
     }
 
     try {
-      const response = await api.put("/api/v1/reset-password", {
-        token,
-        password
+      const response = await api.put("reset-password", {
+        password,
+        token
       });
 
       toast.success(response.data.message || "Password reset successful!");
